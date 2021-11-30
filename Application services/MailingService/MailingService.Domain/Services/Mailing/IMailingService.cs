@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using MailingService.Domain.Models.Mailing;
 
-namespace MailingService.Domain.Services
+namespace MailingService.Domain.Services.Mailing
 {
     public interface IMailingService
     {

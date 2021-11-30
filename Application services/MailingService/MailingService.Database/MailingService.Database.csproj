@@ -11,4 +11,9 @@
       <PackageReference Include="MimeKit" Version="2.15.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Context" />
+      <Folder Include="Repository" />
+    </ItemGroup>
+
 </Project>

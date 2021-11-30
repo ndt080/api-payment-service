@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MailingService.Domain.Services.Mailing;
+using MailingService.Domain.Services.Access;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +28,8 @@ namespace MailingService.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddScoped<IMailingService, Domain.Services.Mailing.MailingService>();
+            services.AddScoped<IAccessService, AccessService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MailingService.Server", Version = "v1" });
@@ -38,7 +42,7 @@ namespace MailingService.Server
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => 
+                app.UseSwaggerUI(c =>
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "MailingService.Server v1"));
             }
 
