@@ -1,22 +1,24 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PaymentService.Domain.AuthUtils;
 using PaymentService.Domain.Models;
 using PaymentService.Domain.Services;
+using BCryptNet = BCrypt.Net.BCrypt;
 
 namespace PaymentService.Server.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("api/auth[controller]")]
+    [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly ITokenRegisterService _registerService;
+        private readonly ISubscribeRegisterService _registerService;
 
-        public AuthController(IUserService userService, ITokenRegisterService registerService)
+        public AuthController(IUserService userService, ISubscribeRegisterService registerService)
         {
             _userService = userService;
             _registerService = registerService;
@@ -24,11 +26,15 @@ namespace PaymentService.Server.Controllers
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public async Task<IActionResult> Register(User user)
+        public async Task<IActionResult> Register(UserRequest user)
         {
-            if (!await _registerService.IsValid(user))
-                return BadRequest(new { message = "Invalid Applied Service name" });
-            _userService.Register(user);
+            _userService.Register(new User
+            {
+                Email = user.Email,
+                PasswordHash = BCryptNet.HashPassword(user.Password),
+                RefreshTokens = new List<RefreshToken>()
+            },IpAddress());
+            
             return Ok();
         }
 

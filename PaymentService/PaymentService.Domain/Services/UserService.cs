@@ -2,6 +2,7 @@ using System;
 using PaymentService.Domain.AuthUtils;
 using PaymentService.Domain.Models;
 using System.Linq;
+using Microsoft.Extensions.Options;
 using PaymentService.Domain.IRepositories;
 using RefreshToken = PaymentService.Domain.Models.RefreshToken;
 using User = PaymentService.Domain.Models.User;
@@ -15,10 +16,10 @@ namespace PaymentService.Domain.Services
         private readonly IJwtUtils _jwtUtils;
         private readonly AppSettings _appSettings;
 
-        public UserService(IJwtUtils jwtUtils, AppSettings appSettings, IUserRepository userRepository)
+        public UserService(IJwtUtils jwtUtils, IOptions<AppSettings> appSettings, IUserRepository userRepository)
         {
             _jwtUtils = jwtUtils;
-            _appSettings = appSettings;
+            _appSettings = appSettings.Value;
             _userRepository = userRepository;
         }
 
@@ -44,9 +45,18 @@ namespace PaymentService.Domain.Services
             return new AuthenticateResponse(user, jwtToken, refreshToken.Token);
         }
 
-        public void Register(User user)
+        public AuthenticateResponse Register(User model, string ipAddress)
         {
-            _userRepository.Add(user);
+            var user = _userRepository.Add(model);
+
+            var jwtToken = _jwtUtils.GenerateJwtToken(user);
+            var refreshToken = _jwtUtils.GenerateRefreshToken(ipAddress);
+            user.RefreshTokens.Add(refreshToken);
+            RemoveOldRefreshTokens(user);
+            
+            _userRepository.Update(user);
+
+            return new AuthenticateResponse(user, jwtToken, refreshToken.Token);
         }
 
         public AuthenticateResponse RefreshToken(string token, string ipAddress)

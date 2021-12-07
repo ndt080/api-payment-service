@@ -12,6 +12,6 @@ namespace PaymentService.Domain.IRepositories
         User GetByEmail(string name);
 
         void Update(User user);
-        void Add(User user);
+        User Add(User user);
     }
 }

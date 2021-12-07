@@ -39,11 +39,13 @@ namespace PaymentService.Database.Repositories
             _context.SaveChanges();
         }
         
-        public void Add(User user)
+        public User Add(User user)
         {
             _context.Entry(user).State = EntityState.Modified;
-            _context.Add(user);
+            var userEntity = _context.Add(user);
             _context.SaveChanges();
+            
+            return userEntity.Entity;
         }
     }
 }

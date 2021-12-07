@@ -5,7 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using PaymentService.Database.Context;
 using PaymentService.Database.Repositories;
+using PaymentService.Domain.AuthUtils;
 using PaymentService.Domain.IRepositories;
 using PaymentService.Domain.Services;
 
@@ -19,11 +21,17 @@ namespace PaymentService.Server
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddHttpContextAccessor();
+            services.AddDbContext<UsersContext>();
+            services.AddCors();
+            services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.IgnoreNullValues = true);
 
-            services.AddHttpClient<ITokenRegisterService, TokenRegisterService>(client =>
+            services.AddHttpClient<ISubscribeRegisterService, SubscribeRegisterService>(client =>
                 client.BaseAddress = new Uri(Configuration.GetValue<string>("BaseUrl")));
 
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+
+            services.AddScoped<IJwtUtils, JwtUtils>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository, UserRepository>();
 
@@ -41,14 +49,19 @@ namespace PaymentService.Server
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c =>
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "PaymentService.Server v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PaymentService.Server v1"));
             }
 
             app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseCors(x => x.SetIsOriginAllowed(origin => true)
+               .AllowAnyMethod().AllowAnyHeader()
+               .AllowCredentials());
+
+            app.UseMiddleware<JwtMiddleware>();
+
             app.UseAuthorization();
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
 }
