@@ -17,7 +17,7 @@ namespace PaymentService.Server
                     if (port is not null)
                     {
                         webBuilder.UseKestrel();
-                        webBuilder.UseUrls($"https://+:{port}");
+                        webBuilder.UseUrls($"http://+:{port}");
                     }
 
                     webBuilder.UseStartup<Startup>();
