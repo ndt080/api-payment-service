@@ -8,8 +8,8 @@ namespace PaymentService.Domain.AuthUtils
 {
     public class JwtMiddleware
     {
-        private readonly RequestDelegate _next;
         private readonly AppSettings _appSettings;
+        private readonly RequestDelegate _next;
 
         public JwtMiddleware(RequestDelegate next, IOptions<AppSettings> appSettings)
         {

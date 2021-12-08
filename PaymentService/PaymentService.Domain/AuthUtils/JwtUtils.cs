@@ -21,7 +21,10 @@ namespace PaymentService.Domain.AuthUtils
     {
         private readonly AppSettings _appSettings;
 
-        public JwtUtils(IOptions<AppSettings> appSettings) => _appSettings = appSettings.Value;
+        public JwtUtils(IOptions<AppSettings> appSettings)
+        {
+            _appSettings = appSettings.Value;
+        }
 
         public string GenerateJwtToken(User user)
         {

@@ -14,11 +14,12 @@ namespace PaymentService.Server.Controllers
     [Route("api/[controller]")]
     public class SubscribeController : ControllerBase
     {
+        private readonly IJwtUtils _jwtUtils;
         private readonly ISubscribeRegisterService _registerService;
         private readonly IUserRepository _userRepository;
-        private readonly IJwtUtils _jwtUtils;
 
-        public SubscribeController(ISubscribeRegisterService registerService, IUserRepository userRepository, IJwtUtils jwtUtils)
+        public SubscribeController(ISubscribeRegisterService registerService, IUserRepository userRepository,
+            IJwtUtils jwtUtils)
         {
             _registerService = registerService;
             _userRepository = userRepository;
@@ -30,9 +31,9 @@ namespace PaymentService.Server.Controllers
         {
             Request.Headers.TryGetValue("Authorization", out var token);
             var userId = _jwtUtils.ValidateJwtToken(token) ?? 0;
-            
+
             var res = await _registerService.GetServiceInfo(request.ServiceName);
-            
+
             if (res is null)
                 return BadRequest(new { message = "Invalid Applied Service name" });
 
@@ -54,18 +55,18 @@ namespace PaymentService.Server.Controllers
             await _registerService.SendApiKeyToService(subscription, res.Url, res.AddKeyMethod);
             return Ok(subscription);
         }
-        
-        [HttpPost("unsubscribe")]
-        public IActionResult Unsubscribe(int subscribeId)
+
+        [HttpDelete("unsubscribe")]
+        public IActionResult Unsubscribe(string apiKey)
         {
             Request.Headers.TryGetValue("Authorization", out var token);
             var userId = _jwtUtils.ValidateJwtToken(token);
-            
+
             if (userId is null)
                 return BadRequest(new { message = "Invalid User" });
-            
-            _userRepository.DeleteSubscription(userId.Value, subscribeId);
-            
+
+            _userRepository.DeleteSubscription(userId.Value, apiKey);
+
             return Ok();
         }
     }

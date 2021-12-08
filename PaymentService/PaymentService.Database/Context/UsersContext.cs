@@ -6,8 +6,6 @@ namespace PaymentService.Database.Context
 {
     public sealed class UsersContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
-
         private readonly IConfiguration _configuration;
 
         public UsersContext(IConfiguration configuration)
@@ -15,6 +13,8 @@ namespace PaymentService.Database.Context
             _configuration = configuration;
             Database.EnsureCreated();
         }
+
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

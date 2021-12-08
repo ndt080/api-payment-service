@@ -1,21 +1,19 @@
 using System;
 using System.Collections.Generic;
-using PaymentService.Domain.AuthUtils;
-using PaymentService.Domain.Models;
 using System.Linq;
 using Microsoft.Extensions.Options;
+using PaymentService.Domain.AuthUtils;
 using PaymentService.Domain.IRepositories;
-using RefreshToken = PaymentService.Domain.Models.RefreshToken;
-using User = PaymentService.Domain.Models.User;
+using PaymentService.Domain.Models;
 using BCryptNet = BCrypt.Net.BCrypt;
 
 namespace PaymentService.Domain.Services
 {
     public class UserService : IUserService
     {
-        private readonly IUserRepository _userRepository;
-        private readonly IJwtUtils _jwtUtils;
         private readonly AppSettings _appSettings;
+        private readonly IJwtUtils _jwtUtils;
+        private readonly IUserRepository _userRepository;
 
         public UserService(IJwtUtils jwtUtils, IOptions<AppSettings> appSettings, IUserRepository userRepository)
         {
@@ -50,7 +48,7 @@ namespace PaymentService.Domain.Services
             var refreshToken = _jwtUtils.GenerateRefreshToken(ipAddress);
             user.RefreshTokens.Add(refreshToken);
             RemoveOldRefreshTokens(user);
-            
+
             _userRepository.Update(user);
 
             return new AuthenticateResponse(user, jwtToken, refreshToken.Token);
@@ -63,7 +61,8 @@ namespace PaymentService.Domain.Services
 
             if (refreshToken.IsRevoked)
             {
-                RevokeDescendantRefreshTokens(refreshToken, user, ipAddress, $"Attempted reuse of revoked ancestor token: {token}");
+                RevokeDescendantRefreshTokens(refreshToken, user, ipAddress,
+                    $"Attempted reuse of revoked ancestor token: {token}");
                 _userRepository.Update(user);
             }
 
@@ -94,7 +93,10 @@ namespace PaymentService.Domain.Services
             _userRepository.Update(user);
         }
 
-        public IEnumerable<User> GetAllUsers() => _userRepository.GetAll();
+        public IEnumerable<User> GetAllUsers()
+        {
+            return _userRepository.GetAll();
+        }
 
         // helper methods
 
@@ -111,9 +113,11 @@ namespace PaymentService.Domain.Services
             return newRefreshToken;
         }
 
-        private void RemoveOldRefreshTokens(User user) =>
+        private void RemoveOldRefreshTokens(User user)
+        {
             user.RefreshTokens.RemoveAll(x =>
                 !x.IsActive && x.Created.AddDays(_appSettings.RefreshTokenTtl) <= DateTime.UtcNow);
+        }
 
         private static void RevokeDescendantRefreshTokens(RefreshToken refreshToken, User user, string ipAddress,
             string reason)

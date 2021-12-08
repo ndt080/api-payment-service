@@ -17,7 +17,10 @@ namespace PaymentService.Server.Controllers
     {
         private readonly IUserService _userService;
 
-        public AuthController(IUserService userService) => _userService = userService;
+        public AuthController(IUserService userService)
+        {
+            _userService = userService;
+        }
 
         [AllowAnonymous]
         [HttpPost("register")]
@@ -29,7 +32,7 @@ namespace PaymentService.Server.Controllers
                     Email = user.Email,
                     PasswordHash = BCryptNet.HashPassword(user.Password),
                     RefreshTokens = new List<RefreshToken>(),
-                    Subscriptions = new List<SubscriptionInfo>(),
+                    Subscriptions = new List<SubscriptionInfo>()
                 }, IpAddress()));
 
             return Ok(res);
@@ -46,7 +49,7 @@ namespace PaymentService.Server.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("users")]
+        [HttpGet("users")]
         public IActionResult Users()
         {
             return Ok(_userService.GetAllUsers());

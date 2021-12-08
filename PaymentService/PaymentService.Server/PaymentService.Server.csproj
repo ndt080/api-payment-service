@@ -7,18 +7,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\PaymentService.Database\PaymentService.Database.csproj" />
-      <ProjectReference Include="..\PaymentService.Domain\PaymentService.Domain.csproj" />
+        <ProjectReference Include="..\PaymentService.Database\PaymentService.Database.csproj"/>
+        <ProjectReference Include="..\PaymentService.Domain\PaymentService.Domain.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\Dockerfile">
-        <Link>Dockerfile</Link>
-      </Content>
+        <Content Include="..\Dockerfile">
+            <Link>Dockerfile</Link>
+        </Content>
     </ItemGroup>
 
 </Project>

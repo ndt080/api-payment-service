@@ -1,9 +1,9 @@
+using System;
+using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using PaymentService.Domain.Models;
-using System;
-using System.Linq;
 
 namespace PaymentService.Domain.AuthUtils
 {
@@ -19,7 +19,7 @@ namespace PaymentService.Domain.AuthUtils
             var user = (User)context.HttpContext.Items["User"];
             if (user is null)
                 context.Result = new JsonResult(new { message = "Unauthorized" })
-                { StatusCode = StatusCodes.Status401Unauthorized };
+                    { StatusCode = StatusCodes.Status401Unauthorized };
         }
     }
 }

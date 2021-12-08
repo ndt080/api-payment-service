@@ -12,11 +12,17 @@ namespace PaymentService.Database.Repositories
     {
         private readonly UsersContext _context;
 
-        public UserRepository(UsersContext context) => _context = context;
+        public UserRepository(UsersContext context)
+        {
+            _context = context;
+        }
 
-        public IEnumerable<User> GetAll() => _context.Users
-            .Include(x => x.Subscriptions)
-            .ToList();
+        public IEnumerable<User> GetAll()
+        {
+            return _context.Users
+                .Include(x => x.Subscriptions)
+                .ToList();
+        }
 
         public User GetById(int id)
         {
@@ -58,6 +64,7 @@ namespace PaymentService.Database.Repositories
         public void AddSubscriptions(int userId, SubscriptionInfo info)
         {
             var user = GetById(userId);
+            _context.Entry(user).Collection(x => x.Subscriptions).Load();
             _context.Entry(user).Collection(x => x.Subscriptions).IsModified = true;
 
             user.Subscriptions ??= new List<SubscriptionInfo>();
@@ -67,17 +74,16 @@ namespace PaymentService.Database.Repositories
             _context.SaveChanges();
         }
 
-        public void DeleteSubscription(int userId, int subscribeId)
+        public void DeleteSubscription(int userId, string apiKey)
         {
             var user = GetById(userId);
             _context.Entry(user).Collection(x => x.Subscriptions).Load();
-            
-            var subToDelete = user.Subscriptions.Find(x => x.Id == subscribeId);
+            _context.Entry(user).Collection(x => x.Subscriptions).IsModified = true;
+
+            var subToDelete = user.Subscriptions.Find(x => x.ApiKey == apiKey);
             user.Subscriptions.Remove(subToDelete);
             user.Subscriptions.RemoveAll(info => info.End < DateTime.Now);
-            
-            _context.Entry(user).Collection(x => x.Subscriptions).IsModified = true;
-            
+
             _context.SaveChanges();
         }
     }

@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using PaymentService.Database.Context;
 using PaymentService.Database.Repositories;
@@ -16,7 +14,10 @@ namespace PaymentService.Server
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration) => Configuration = configuration;
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
 
         public IConfiguration Configuration { get; }
 
@@ -28,12 +29,11 @@ namespace PaymentService.Server
             services.AddCors();
             services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.IgnoreNullValues = true);
 
-            services.AddHttpClient<ISubscribeRegisterService, SubscribeRegisterService>(client =>
-                client.BaseAddress = new Uri(Configuration.GetValue<string>("BaseUrl")));
-
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.AddHttpClient<ISubscribeRegisterService, SubscribeRegisterService>();
 
             services.AddScoped<IJwtUtils, JwtUtils>();
+            services.AddScoped<ISubscribeRegisterService, SubscribeRegisterService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository, UserRepository>();
 
@@ -60,7 +60,7 @@ namespace PaymentService.Server
                             Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" },
                             Scheme = "oauth2",
                             Name = "Bearer",
-                            In = ParameterLocation.Header,
+                            In = ParameterLocation.Header
                         },
                         new List<string>()
                     }
