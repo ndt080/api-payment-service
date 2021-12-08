@@ -1,8 +1,5 @@
 using System;
-using System.Diagnostics;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PaymentService.Domain.AuthUtils;
 using PaymentService.Domain.IRepositories;
@@ -32,7 +29,7 @@ namespace PaymentService.Server.Controllers
         public async Task<IActionResult> Subscribe(SubscriptionRequest request)
         {
             Request.Headers.TryGetValue("Authorization", out var token);
-            var userId = _jwtUtils.ValidateJwtToken(token);
+            var userId = _jwtUtils.ValidateJwtToken(token) ?? 0;
             
             var res = await _registerService.GetServiceInfo(request.ServiceName);
             
@@ -52,27 +49,24 @@ namespace PaymentService.Server.Controllers
                 End = DateTime.Now.AddDays(res.SubscriptionDuration)
             };
 
-            _userRepository.AddSubscriptions(userId ?? 0, subscription);
+            _userRepository.AddSubscriptions(userId, subscription);
 
             await _registerService.SendApiKeyToService(subscription, res.Url, res.AddKeyMethod);
             return Ok(subscription);
         }
         
-        [AllowAnonymous]
-        [HttpPost("test-subscribe")]
-        public IActionResult Test(int userId)
+        [HttpPost("unsubscribe")]
+        public IActionResult Unsubscribe(int subscribeId)
         {
-            var t = new SubscriptionInfo
-            {
-                ServiceName = "test",
-                ApiKey = "key-to-delete",
-                Start = DateTime.Now,
-                End = DateTime.Now.AddDays(10)
-            };
+            Request.Headers.TryGetValue("Authorization", out var token);
+            var userId = _jwtUtils.ValidateJwtToken(token);
             
-            _userRepository.AddSubscriptions(userId, t);
-
-            return Ok(t);
+            if (userId is null)
+                return BadRequest(new { message = "Invalid User" });
+            
+            _userRepository.DeleteSubscription(userId.Value, subscribeId);
+            
+            return Ok();
         }
     }
 }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\PROJECTS\\api-payment-service\\PaymentService\\PaymentService.Domain\\PaymentService.Domain.csproj": {}
+    "D:\\5sem\\SAO\\3\\api-payment-service\\PaymentService\\PaymentService.Domain\\PaymentService.Domain.csproj": {}
   },
   "projects": {
-    "D:\\PROJECTS\\api-payment-service\\PaymentService\\PaymentService.Domain\\PaymentService.Domain.csproj": {
+    "D:\\5sem\\SAO\\3\\api-payment-service\\PaymentService\\PaymentService.Domain\\PaymentService.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PROJECTS\\api-payment-service\\PaymentService\\PaymentService.Domain\\PaymentService.Domain.csproj",
+        "projectUniqueName": "D:\\5sem\\SAO\\3\\api-payment-service\\PaymentService\\PaymentService.Domain\\PaymentService.Domain.csproj",
         "projectName": "PaymentService.Domain",
-        "projectPath": "D:\\PROJECTS\\api-payment-service\\PaymentService\\PaymentService.Domain\\PaymentService.Domain.csproj",
-        "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
-        "outputPath": "D:\\PROJECTS\\api-payment-service\\PaymentService\\PaymentService.Domain\\obj\\",
+        "projectPath": "D:\\5sem\\SAO\\3\\api-payment-service\\PaymentService\\PaymentService.Domain\\PaymentService.Domain.csproj",
+        "packagesPath": "C:\\Users\\Рома\\.nuget\\packages\\",
+        "outputPath": "D:\\5sem\\SAO\\3\\api-payment-service\\PaymentService\\PaymentService.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Рома\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -75,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

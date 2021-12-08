@@ -13,5 +13,7 @@ namespace PaymentService.Domain.IRepositories
         void Update(User user);
         User Add(User user);
         void AddSubscriptions(int userId, SubscriptionInfo info);
+
+        void DeleteSubscription(int userId, int subscribeId);
     }
 }

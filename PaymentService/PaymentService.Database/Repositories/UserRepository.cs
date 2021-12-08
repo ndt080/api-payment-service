@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -58,14 +59,25 @@ namespace PaymentService.Database.Repositories
         {
             var user = GetById(userId);
             _context.Entry(user).Collection(x => x.Subscriptions).IsModified = true;
-            
-            var subs = user.Subscriptions;
-            if (subs is null)
-                user.Subscriptions = new List<SubscriptionInfo>(){info};
-            else
-                user.Subscriptions.Add(info);
+
+            user.Subscriptions ??= new List<SubscriptionInfo>();
+            user.Subscriptions.Add(info);
 
             _context.Update(user);
+            _context.SaveChanges();
+        }
+
+        public void DeleteSubscription(int userId, int subscribeId)
+        {
+            var user = GetById(userId);
+            _context.Entry(user).Collection(x => x.Subscriptions).Load();
+            
+            var subToDelete = user.Subscriptions.Find(x => x.Id == subscribeId);
+            user.Subscriptions.Remove(subToDelete);
+            user.Subscriptions.RemoveAll(info => info.End < DateTime.Now);
+            
+            _context.Entry(user).Collection(x => x.Subscriptions).IsModified = true;
+            
             _context.SaveChanges();
         }
     }

@@ -22,13 +22,9 @@ namespace PaymentService.Server
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // для текущего айдишника юзера (но не работает) 
-            //services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            //services.AddHttpContextAccessor();
-            
             services.AddHttpContextAccessor();
             services.AddDbContext<UsersContext>();
-            
+
             services.AddCors();
             services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.IgnoreNullValues = true);
 
@@ -48,7 +44,8 @@ namespace PaymentService.Server
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description =
-                        "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\"",
+                        "JWT Authorization header using the Bearer scheme. \r\n\r\n " +
+                        "Enter 'Bearer' [space] and then your token in the text input below.",
                     Name = "Authorization",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
@@ -73,12 +70,6 @@ namespace PaymentService.Server
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            // if (env.IsDevelopment())
-            // {
-            //     app.UseDeveloperExceptionPage();
-            //     app.UseSwagger();
-            //     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PaymentService.Server v1"));
-            // }
             app.UseDeveloperExceptionPage();
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PaymentService.Server v1"));
