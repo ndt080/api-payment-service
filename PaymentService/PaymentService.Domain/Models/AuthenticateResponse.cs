@@ -16,6 +16,7 @@ namespace PaymentService.Domain.Models
             Email = user.Email;
             JwtToken = jwtToken;
             RefreshToken = refreshToken;
+            Subscriptions = user.Subscriptions;
         }
     }
 }

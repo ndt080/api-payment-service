@@ -28,7 +28,8 @@ namespace PaymentService.Server.Controllers
                 {
                     Email = user.Email,
                     PasswordHash = BCryptNet.HashPassword(user.Password),
-                    RefreshTokens = new List<RefreshToken>()
+                    RefreshTokens = new List<RefreshToken>(),
+                    Subscriptions = new List<SubscriptionInfo>(),
                 }, IpAddress()));
 
             return Ok(res);

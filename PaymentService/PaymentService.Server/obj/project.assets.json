@@ -564,7 +564,10 @@
         },
         "runtime": {
           "bin/placeholder/PaymentService.Database.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "PaymentService.Domain/1.0.0": {
         "type": "project",
@@ -1574,19 +1577,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Рома\\.nuget\\packages\\": {}
+    "C:\\Users\\andre\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\5sem\\SAO\\3\\api-payment-service\\PaymentService\\PaymentService.Server\\PaymentService.Server.csproj",
+      "projectUniqueName": "D:\\PROJECTS\\api-payment-service\\PaymentService\\PaymentService.Server\\PaymentService.Server.csproj",
       "projectName": "PaymentService.Server",
-      "projectPath": "D:\\5sem\\SAO\\3\\api-payment-service\\PaymentService\\PaymentService.Server\\PaymentService.Server.csproj",
-      "packagesPath": "C:\\Users\\Рома\\.nuget\\packages\\",
-      "outputPath": "D:\\5sem\\SAO\\3\\api-payment-service\\PaymentService\\PaymentService.Server\\obj\\",
+      "projectPath": "D:\\PROJECTS\\api-payment-service\\PaymentService\\PaymentService.Server\\PaymentService.Server.csproj",
+      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
+      "outputPath": "D:\\PROJECTS\\api-payment-service\\PaymentService\\PaymentService.Server\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Рома\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1600,11 +1603,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\5sem\\SAO\\3\\api-payment-service\\PaymentService\\PaymentService.Database\\PaymentService.Database.csproj": {
-              "projectPath": "D:\\5sem\\SAO\\3\\api-payment-service\\PaymentService\\PaymentService.Database\\PaymentService.Database.csproj"
+            "D:\\PROJECTS\\api-payment-service\\PaymentService\\PaymentService.Database\\PaymentService.Database.csproj": {
+              "projectPath": "D:\\PROJECTS\\api-payment-service\\PaymentService\\PaymentService.Database\\PaymentService.Database.csproj"
             },
-            "D:\\5sem\\SAO\\3\\api-payment-service\\PaymentService\\PaymentService.Domain\\PaymentService.Domain.csproj": {
-              "projectPath": "D:\\5sem\\SAO\\3\\api-payment-service\\PaymentService\\PaymentService.Domain\\PaymentService.Domain.csproj"
+            "D:\\PROJECTS\\api-payment-service\\PaymentService\\PaymentService.Domain\\PaymentService.Domain.csproj": {
+              "projectPath": "D:\\PROJECTS\\api-payment-service\\PaymentService\\PaymentService.Domain\\PaymentService.Domain.csproj"
             }
           }
         }
@@ -1642,7 +1645,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

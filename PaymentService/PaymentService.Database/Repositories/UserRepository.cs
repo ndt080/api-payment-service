@@ -54,13 +54,18 @@ namespace PaymentService.Database.Repositories
             return userEntity.Entity;
         }
 
-        public void AddSubscriptions(SubscriptionInfo info)
+        public void AddSubscriptions(int userId, SubscriptionInfo info)
         {
-            var user = GetById(info.Id);
-            
+            var user = GetById(userId);
             _context.Entry(user).Collection(x => x.Subscriptions).IsModified = true;
+            
+            var subs = user.Subscriptions;
+            if (subs is null)
+                user.Subscriptions = new List<SubscriptionInfo>(){info};
+            else
+                user.Subscriptions.Add(info);
 
-            (user.Subscriptions ??= new List<SubscriptionInfo>()).Add(info);
+            _context.Update(user);
             _context.SaveChanges();
         }
     }
