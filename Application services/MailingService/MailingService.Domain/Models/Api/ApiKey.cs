@@ -6,9 +6,10 @@ namespace MailingService.Domain.Models.Api
     public class ApiKey
     {
         [Key]
-        private string Id;
-        private string Key;
-        private DateTime SubscriptionStart;
-        private DateTime SubscriptionEnd;
+        public string Id  { get; set; }
+
+        public string Key  { get; set; }
+        public DateTime SubscriptionStart  { get; set; }
+        public DateTime SubscriptionEnd  { get; set; }
     }
 }

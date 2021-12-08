@@ -2,11 +2,13 @@
 using System.Threading.Tasks;
 using MailingService.Domain.Models.Api;
 using MailingService.Domain.Services.Access;
+using MailingService.Server.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MailingService.Server.Controllers {
-    [Route("api/subscribe/[controller]")]
+    
     [ApiController]
+    [Route("api/subscribe/[controller]")]
     public class SubscribeController: ControllerBase {
         private readonly IAccessService _accessService;
 
@@ -14,24 +16,26 @@ namespace MailingService.Server.Controllers {
             _accessService = accessService;
         }
         
-        [HttpGet]
-        [Route("AddKey")]
-        public async Task<IActionResult> AddKey(ApiKey key) {
+        [HttpPost("AddKey")]
+        public async Task<IActionResult> AddKey(ApiKeyRequest key) {
             if (key == null) {
                 return BadRequest();
             }
-            
             try {
-                await _accessService.AddApiKey(key);
+                await _accessService.AddApiKey(new ApiKey()
+                {
+                    Key = key.ApiKey,
+                    SubscriptionEnd = key.End,
+                    SubscriptionStart = key.Start,
+                });
                 return Ok();
             } catch (Exception e) {
                 return BadRequest(e);
             }
         }
         
-        [HttpGet]
-        [Route("RemoveKey")]
-        public async Task<IActionResult> RemoveKey(ApiKey key) {
+        [HttpGet("RemoveKey")]
+        public async Task<IActionResult> RemoveKey(string key) {
             if (key == null) {
                 return BadRequest();
             }
@@ -44,13 +48,8 @@ namespace MailingService.Server.Controllers {
             }
         }
         
-        [HttpGet]
-        [Route("RemoveKeyById")]
-        public async Task<IActionResult> RemoveKeyById(string id) {
-            if (id == null) {
-                return BadRequest();
-            }
-            
+        [HttpGet("RemoveKeyById")]
+        public async Task<IActionResult> RemoveKeyById(int id) {
             try {
                 await _accessService.RemoveApiKeyById(id);
                 return Ok();

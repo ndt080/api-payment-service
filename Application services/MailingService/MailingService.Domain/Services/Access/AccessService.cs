@@ -1,28 +1,36 @@
 ﻿using System.Threading.Tasks;
 using MailingService.Domain.Models.Api;
+using MailingService.Domain.Repository;
 
 namespace MailingService.Domain.Services.Access
 {
     public class AccessService : IAccessService
     {
+        private readonly IApiRepository _apiRepository;
+
+        public AccessService(IApiRepository apiRepository)
+        {
+            _apiRepository = apiRepository;
+        }
+
         public async Task<bool> CheckAccess(string apiKey)
         {
-            throw new System.NotImplementedException();
+           return _apiRepository.CheckAccess(apiKey);
         }
 
-        public async Task<bool> AddApiKey(ApiKey apiKey)
+        public async Task AddApiKey(ApiKey apiKey)
         {
-            throw new System.NotImplementedException();
+            _apiRepository.AddKey(apiKey);
         }
 
-        public async Task<bool> RemoveApiKey(ApiKey apiKey)
+        public async Task RemoveApiKey(string apiKey)
         {
-            throw new System.NotImplementedException();
+            _apiRepository.RemoveKey(apiKey);
         }
 
-        public async Task<bool> RemoveApiKeyById(string id)
+        public async Task RemoveApiKeyById(int id)
         {
-            throw new System.NotImplementedException();
+            _apiRepository.RemoveKeyById(id);
         }
     }
 }
