@@ -23,7 +23,7 @@ namespace MailingService.Database.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlite(_configuration.GetConnectionString("service.db"));
+            options.UseSqlite(_configuration.GetConnectionString("ServiceDB"));
         }
     }
 }

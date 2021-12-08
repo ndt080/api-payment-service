@@ -13,24 +13,24 @@ namespace MailingService.Domain.Services.Access
             _apiRepository = apiRepository;
         }
 
-        public async Task<bool> CheckAccess(string apiKey)
+        public Task<bool> CheckAccess(string apiKey)
         {
-           return _apiRepository.CheckAccess(apiKey);
+            return Task.Run(() => _apiRepository.CheckAccess(apiKey));
         }
 
-        public async Task AddApiKey(ApiKey apiKey)
+        public Task AddApiKey(ApiKey apiKey)
         {
-            _apiRepository.AddKey(apiKey);
+            return Task.Run(() => _apiRepository.AddKey(apiKey));
         }
 
-        public async Task RemoveApiKey(string apiKey)
+        public Task RemoveApiKey(string apiKey)
         {
-            _apiRepository.RemoveKey(apiKey);
+            return Task.Run(() => _apiRepository.RemoveKey(apiKey));
         }
 
-        public async Task RemoveApiKeyById(int id)
+        public Task RemoveApiKeyById(int id)
         {
-            _apiRepository.RemoveKeyById(id);
+            return Task.Run(() => _apiRepository.RemoveKeyById(id));
         }
     }
 }

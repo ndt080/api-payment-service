@@ -3,6 +3,7 @@ using System.Linq;
 using MailingService.Database.Context;
 using MailingService.Domain.Models.Api;
 using MailingService.Domain.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace MailingService.Database.Repository
 {
@@ -17,6 +18,7 @@ namespace MailingService.Database.Repository
 
         public void AddKey(ApiKey key)
         {
+            // _context.Entry(key).State = EntityState.Modified;
             _context.ApiKeys.Add(key);
             _context.SaveChanges();
         }

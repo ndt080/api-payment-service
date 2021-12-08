@@ -27,17 +27,15 @@ namespace MailingService.Server.Controllers
         public async Task<IActionResult> SendEmail(OneMailingRequest request, string accessKey)
         {
             if (!await _accessService.CheckAccess(accessKey)) return Forbid();
-
             if (request == null) return BadRequest();
 
             try
             {
                 await _mailingService.SendEmail(new Email
                 {
-                    Addresses = new List<string> { request.ToEmail },
+                    Addresses = new List<string>() { request.ToEmail },
                     Subject = request.Subject,
-                    Body = request.Body,
-                    Attachments = request.Attachments
+                    Body = request.Body
                 });
                 return Ok();
             }
@@ -62,7 +60,6 @@ namespace MailingService.Server.Controllers
                     Addresses = request.ToEmails,
                     Subject = request.Subject,
                     Body = request.Body,
-                    Attachments = request.Attachments
                 });
                 return Ok();
             }

@@ -23,8 +23,13 @@ namespace MailingService.Server
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.IgnoreNullValues = true);
+            services.AddHttpContextAccessor();
+            services.AddControllers();
+            //     .AddNewtonsoftJson(options =>
+            //     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            // );
             services.AddDbContext<DatabaseContext>();
+            
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
             services.AddScoped<IMailingService, Domain.Services.Mailing.MailingService>();
             services.AddScoped<IApiRepository, ApiRepository>();
@@ -44,7 +49,6 @@ namespace MailingService.Server
 
             app.UseHttpsRedirection();
             app.UseRouting();
-            app.UseAuthorization();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }

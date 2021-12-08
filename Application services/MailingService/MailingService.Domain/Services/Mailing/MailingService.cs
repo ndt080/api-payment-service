@@ -28,7 +28,7 @@ namespace MailingService.Domain.Services.Mailing
             };
             email.To.Add(MailboxAddress.Parse(mailRequest.Addresses[0]));
 
-            var builder = await BuildEmailBodyAsync(mailRequest);
+            BodyBuilder builder = BuildEmailBody(mailRequest);
             email.Body = builder.ToMessageBody();
 
             using var smtp = new SmtpClient();
@@ -51,7 +51,7 @@ namespace MailingService.Domain.Services.Mailing
                 email.To.Add(MailboxAddress.Parse(address));
             }
 
-            var builder = await BuildEmailBodyAsync(mailRequest);
+            var builder = BuildEmailBody(mailRequest);
             email.Body = builder.ToMessageBody();
 
             using var smtp = new SmtpClient();
@@ -61,24 +61,24 @@ namespace MailingService.Domain.Services.Mailing
             await smtp.DisconnectAsync(true);
         }
 
-        private static async Task<BodyBuilder> BuildEmailBodyAsync(Email mailRequest)
+        private BodyBuilder BuildEmailBody(Email mailRequest)
         {
-            if (mailRequest.Attachments == null) return null;
+            BodyBuilder builder = new BodyBuilder();
+            builder.HtmlBody = mailRequest.Body;
+            
+            if (mailRequest.Attachments == null) return builder;
 
-            var builder = new BodyBuilder();
             foreach (var file in mailRequest.Attachments.Where(file => file.Length > 0))
             {
                 byte[] fileBytes;
-                await using (var ms = new MemoryStream())
+                using (var ms = new MemoryStream())
                 {
-                    await file.CopyToAsync(ms);
+                    file.CopyTo(ms);
                     fileBytes = ms.ToArray();
                 }
 
                 builder.Attachments.Add(file.FileName, fileBytes, ContentType.Parse(file.ContentType));
             }
-
-            builder.HtmlBody = mailRequest.Body;
             return builder;
         }
 
