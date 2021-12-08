@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailingService.Server", "MailingService.Server\MailingService.Server.csproj", "{C703E7D4-0D6B-4473-A4D9-BAAAFCE9123A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailingService.Domain", "MailingService.Domain\MailingService.Domain.csproj", "{A3BF3710-0258-40BD-BD0C-1E8689888C73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailingService.Database", "MailingService.Database\MailingService.Database.csproj", "{71DD907D-100F-4FE0-8804-0EE90974ED73}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C703E7D4-0D6B-4473-A4D9-BAAAFCE9123A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C703E7D4-0D6B-4473-A4D9-BAAAFCE9123A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C703E7D4-0D6B-4473-A4D9-BAAAFCE9123A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C703E7D4-0D6B-4473-A4D9-BAAAFCE9123A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3BF3710-0258-40BD-BD0C-1E8689888C73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3BF3710-0258-40BD-BD0C-1E8689888C73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3BF3710-0258-40BD-BD0C-1E8689888C73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3BF3710-0258-40BD-BD0C-1E8689888C73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71DD907D-100F-4FE0-8804-0EE90974ED73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71DD907D-100F-4FE0-8804-0EE90974ED73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71DD907D-100F-4FE0-8804-0EE90974ED73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71DD907D-100F-4FE0-8804-0EE90974ED73}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
