@@ -4,10 +4,7 @@ using System.Net.Http.Json;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using PaymentService.Domain.Models;
-using System.Security.Cryptography;
 using System.Text;
-using Microsoft.AspNetCore.Mvc.Formatters;
-
 
 namespace PaymentService.Domain.Services
 {
@@ -25,6 +22,16 @@ namespace PaymentService.Domain.Services
         {
             var response = await _httpClient.GetAsync($"/api/serviceInfo?serviceName={serviceName}");
             return await response.Content.ReadFromJsonAsync<ServiceInfo>();
+            // return await Task.Run(() => new ServiceInfo
+            // {
+            //     Name = "test",
+            //     Methods = new List<string>{"dfsf","sdf"},
+            //     SubscriptionDuration = 10,
+            //     SubscriptionCurrency = "tertst",
+            //     Url = "",
+            //     AddKeyMethod = "lkl",
+            //     SubscriptionCost = 1,
+            // });
         }
 
         public async Task SendApiKeyToService(SubscriptionInfo info, string url, string methodName)

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using PaymentService.Domain.AuthUtils;
 using PaymentService.Domain.Models;
 using System.Linq;
@@ -27,19 +28,15 @@ namespace PaymentService.Domain.Services
         {
             var user = _userRepository.GetByEmail(model.Email);
 
-            // validate
             if (user is null || !BCryptNet.Verify(model.Password, user.PasswordHash))
                 throw new Exception("Username or password is incorrect");
 
-            // authentication successful so generate jwt and refresh tokens
             var jwtToken = _jwtUtils.GenerateJwtToken(user);
             var refreshToken = _jwtUtils.GenerateRefreshToken(ipAddress);
             user.RefreshTokens.Add(refreshToken);
 
-            // remove old refresh tokens from user
             RemoveOldRefreshTokens(user);
 
-            // save changes to db
             _userRepository.Update(user);
 
             return new AuthenticateResponse(user, jwtToken, refreshToken.Token);
@@ -66,7 +63,6 @@ namespace PaymentService.Domain.Services
 
             if (refreshToken.IsRevoked)
             {
-                // revoke all descendant tokens in case this token has been compromised
                 RevokeDescendantRefreshTokens(refreshToken, user, ipAddress, $"Attempted reuse of revoked ancestor token: {token}");
                 _userRepository.Update(user);
             }
@@ -74,17 +70,13 @@ namespace PaymentService.Domain.Services
             if (!refreshToken.IsActive)
                 throw new Exception("Invalid token");
 
-            // replace old refresh token with a new one (rotate token)
             var newRefreshToken = RotateRefreshToken(refreshToken, ipAddress);
             user.RefreshTokens.Add(newRefreshToken);
 
-            // remove old refresh tokens from user
             RemoveOldRefreshTokens(user);
 
-            // save changes to db
             _userRepository.Update(user);
 
-            // generate new jwt
             var jwtToken = _jwtUtils.GenerateJwtToken(user);
 
             return new AuthenticateResponse(user, jwtToken, newRefreshToken.Token);
@@ -98,10 +90,11 @@ namespace PaymentService.Domain.Services
             if (!refreshToken.IsActive)
                 throw new Exception("Invalid token");
 
-            // revoke token and save
             RevokeRefreshToken(refreshToken, ipAddress, "Revoked without replacement");
             _userRepository.Update(user);
         }
+
+        public IEnumerable<User> GetAllUsers() => _userRepository.GetAll();
 
         // helper methods
 

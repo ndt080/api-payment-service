@@ -1,11 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using PaymentService.Domain.Models;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace PaymentService.Database.Context
 {
-    public class UsersContext : DbContext
+    public sealed class UsersContext : DbContext
     {
         public DbSet<User> Users { get; set; }
 
@@ -19,10 +18,9 @@ namespace PaymentService.Database.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //builder.Entity<User>().Key(m => m.Id);
             base.OnModelCreating(builder);
         }
-        
+
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlite(_configuration.GetConnectionString("UsersDB"));

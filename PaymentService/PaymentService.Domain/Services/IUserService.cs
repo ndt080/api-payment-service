@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using PaymentService.Domain.Models;
 
 namespace PaymentService.Domain.Services
@@ -8,5 +9,7 @@ namespace PaymentService.Domain.Services
         AuthenticateResponse Login(UserRequest model, string ipAddress);
         AuthenticateResponse RefreshToken(string token, string ipAddress);
         void RevokeToken(string token, string ipAddress);
+
+        IEnumerable<User> GetAllUsers();
     }
 }

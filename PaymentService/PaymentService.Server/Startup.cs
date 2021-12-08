@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,8 +22,13 @@ namespace PaymentService.Server
 
         public void ConfigureServices(IServiceCollection services)
         {
+            // для текущего айдишника юзера (но не работает) 
+            //services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //services.AddHttpContextAccessor();
+            
             services.AddHttpContextAccessor();
             services.AddDbContext<UsersContext>();
+            
             services.AddCors();
             services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.IgnoreNullValues = true);
 
@@ -36,11 +42,33 @@ namespace PaymentService.Server
             services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddSwaggerGen(c =>
-                c.SwaggerDoc("v1", new OpenApiInfo
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "PaymentService.Server", Version = "v1" });
+
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    Title = "PaymentService.Server",
-                    Version = "v1"
-                }));
+                    Description =
+                        "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\"",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" },
+                            Scheme = "oauth2",
+                            Name = "Bearer",
+                            In = ParameterLocation.Header,
+                        },
+                        new List<string>()
+                    }
+                });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -54,13 +82,13 @@ namespace PaymentService.Server
 
             app.UseHttpsRedirection();
             app.UseRouting();
-            app.UseCors(x => x.SetIsOriginAllowed(origin => true)
-               .AllowAnyMethod().AllowAnyHeader()
-               .AllowCredentials());
-
-            app.UseMiddleware<JwtMiddleware>();
+            app.UseCors(x => x.SetIsOriginAllowed(_ => true)
+                .AllowAnyMethod().AllowAnyHeader()
+                .AllowCredentials());
 
             app.UseAuthorization();
+            app.UseMiddleware<JwtMiddleware>();
+
             app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using PaymentService.Domain.Models;
 
@@ -13,5 +12,6 @@ namespace PaymentService.Domain.IRepositories
 
         void Update(User user);
         User Add(User user);
+        void AddSubscriptions(SubscriptionInfo info);
     }
 }

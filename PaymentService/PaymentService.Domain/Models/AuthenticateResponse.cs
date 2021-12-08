@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+using System.Collections.Generic;
 
 namespace PaymentService.Domain.Models
 {
@@ -8,6 +8,7 @@ namespace PaymentService.Domain.Models
         public string Email { get; set; }
         public string JwtToken { get; set; }
         public string RefreshToken { get; set; }
+        public List<SubscriptionInfo> Subscriptions { get; set; }
 
         public AuthenticateResponse(User user, string jwtToken, string refreshToken)
         {

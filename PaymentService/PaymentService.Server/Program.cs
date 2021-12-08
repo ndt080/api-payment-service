@@ -4,33 +4,22 @@ using Microsoft.Extensions.Hosting;
 
 namespace PaymentService.Server
 {
-    // public class Program
-    // {
-    //     public static void Main(string[] args) => 
-    //         CreateHostBuilder(args).Build().Run();
-    //
-    //     public static IHostBuilder CreateHostBuilder(string[] args) =>
-    //         Host.CreateDefaultBuilder(args)
-    //             .ConfigureWebHostDefaults(webBuilder =>
-    //                 webBuilder.UseStartup<Startup>().UseUrls("https://localhost:5001"));//https://spilarams.com
-    // }
     public static class Program
     {
-        public static void Main(string[] args)
-        {
+        public static void Main(string[] args) =>
             CreateHostBuilder(args).Build().Run();
-        }
 
         private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     var port = Environment.GetEnvironmentVariable("PORT");
-                    if (port != null)
+                    if (port is not null)
                     {
                         webBuilder.UseKestrel();
-                        webBuilder.UseUrls($"http://+:{port}");
+                        webBuilder.UseUrls($"https://+:{port}");
                     }
+
                     webBuilder.UseStartup<Startup>();
                 });
     }

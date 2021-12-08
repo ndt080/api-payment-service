@@ -16,26 +16,22 @@ namespace PaymentService.Server.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly ISubscribeRegisterService _registerService;
 
-        public AuthController(IUserService userService, ISubscribeRegisterService registerService)
-        {
-            _userService = userService;
-            _registerService = registerService;
-        }
+        public AuthController(IUserService userService) => _userService = userService;
 
         [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserRequest user)
         {
-            _userService.Register(new User
-            {
-                Email = user.Email,
-                PasswordHash = BCryptNet.HashPassword(user.Password),
-                RefreshTokens = new List<RefreshToken>()
-            },IpAddress());
-            
-            return Ok();
+            var res = await Task.Run(() =>
+                _userService.Register(new User
+                {
+                    Email = user.Email,
+                    PasswordHash = BCryptNet.HashPassword(user.Password),
+                    RefreshTokens = new List<RefreshToken>()
+                }, IpAddress()));
+
+            return Ok(res);
         }
 
         [AllowAnonymous]
@@ -43,8 +39,16 @@ namespace PaymentService.Server.Controllers
         public IActionResult Login(UserRequest model)
         {
             var response = _userService.Login(model, IpAddress());
+
             SetTokenCookie(response.RefreshToken);
             return Ok(response);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("users")]
+        public IActionResult Users()
+        {
+            return Ok(_userService.GetAllUsers());
         }
 
         [AllowAnonymous]
@@ -53,6 +57,7 @@ namespace PaymentService.Server.Controllers
         {
             var refreshToken = Request.Cookies["refreshToken"];
             var response = _userService.RefreshToken(refreshToken, IpAddress());
+
             SetTokenCookie(response.RefreshToken);
             return Ok(response);
         }
@@ -60,9 +65,7 @@ namespace PaymentService.Server.Controllers
         [HttpPost("revoke-token")]
         public IActionResult RevokeToken(RevokeTokenRequest model)
         {
-            // accept refresh token in request body or cookie
             var token = model.Token ?? Request.Cookies["refreshToken"];
-
             if (string.IsNullOrEmpty(token))
                 return BadRequest(new { message = "Token is required" });
 
@@ -70,7 +73,7 @@ namespace PaymentService.Server.Controllers
             return Ok(new { message = "Token revoked" });
         }
 
-        // helper methods
+        #region helper methods
 
         private void SetTokenCookie(string token)
         {
@@ -79,6 +82,7 @@ namespace PaymentService.Server.Controllers
                 HttpOnly = true,
                 Expires = DateTime.UtcNow.AddDays(7)
             };
+
             Response.Cookies.Append("refreshToken", token, cookieOptions);
         }
 
@@ -88,5 +92,7 @@ namespace PaymentService.Server.Controllers
                 return Request.Headers["X-Forwarded-For"];
             return HttpContext.Connection.RemoteIpAddress?.MapToIPv4().ToString();
         }
+
+        #endregion
     }
 }
