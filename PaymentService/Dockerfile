@@ -20,7 +20,7 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
 ENTRYPOINT ["dotnet", "PaymentService.Server.dll"]
-CMD ["dotnet", "PaymentService.Server.dll", "--server.urls", "http://+:$(PORT)"]
+CMD ["dotnet", "PaymentService.Server.dll", "--server.urls", "https://+:$(PORT)"]
 #COPY . .
 #WORKDIR "/src/PaymentService.Server"
 #RUN dotnet build "PaymentService.Server.csproj" -c Release -o /app/build
