@@ -25,7 +25,7 @@ namespace PaymentService.Domain.Services
         public async Task<ServiceInfo> GetServiceInfo(string serviceName)
         {
             _httpClient.BaseAddress = new Uri(_appSettings.RegisterUrl);
-            var response = await _httpClient.GetAsync($"/api/serviceInfo?serviceName={serviceName}");
+            var response = await _httpClient.GetAsync($"/api/getServiceInfo?name={serviceName}");
             return await response.Content.ReadFromJsonAsync<ServiceInfo>();
         }
 
