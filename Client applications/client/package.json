@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "angular-proj",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -10,7 +10,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~12.2.0",
+    "@angular/animations": "^12.2.4",
     "@angular/common": "~12.2.0",
     "@angular/compiler": "~12.2.0",
     "@angular/core": "~12.2.0",
@@ -18,14 +18,18 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "ngx-toastr": "^14.1.0",
+    "prettier": "^2.5.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
+    "tslint-angular": "^3.0.3",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~12.2.6",
-    "@angular/cli": "~12.2.6",
+    "@angular-devkit/build-angular": "~12.2.4",
+    "@angular/cli": "~12.2.4",
     "@angular/compiler-cli": "~12.2.0",
+    "@nativescript/schematics": "^11.2.0",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
     "jasmine-core": "~3.8.0",

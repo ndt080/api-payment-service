@@ -1,0 +1,39 @@
+.layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(255,75,43);
+  background: linear-gradient(90deg, rgba(255,75,43,1) 0%, rgba(255,65,108,1) 100%);
+}
+
+.container {
+  width: 500px;
+  min-height: 200px;
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+}
+
+.form_change_btn {
+  width: 100%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: rgb(255,75,43);
+  text-align: center;
+  padding-top: 15px;
+}
+
+
+.form_change_btn:hover {
+  color: rgb(255,65,108);
+  transition-duration: 1s;
+}
+
+@media (max-width: 700px) {
+  .container {
+    width: 75vw;
+  }
+}
