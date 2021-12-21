@@ -16,10 +16,12 @@ namespace PaymentService.Server.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IJwtUtils _jwtUtils;
 
-        public AuthController(IUserService userService)
+        public AuthController(IUserService userService, IJwtUtils jwtUtils)
         {
             _userService = userService;
+            _jwtUtils = jwtUtils;
         }
 
         [AllowAnonymous]
@@ -55,13 +57,12 @@ namespace PaymentService.Server.Controllers
             return Ok(_userService.GetAllUsers());
         }
         
-        [AllowAnonymous]
         [HttpGet("user")]
         public IActionResult CurrentUsers()
         {
-            //Request.Headers.TryGetValue("Authorization", out var token);
-            var token = Request.Cookies["refreshToken"];
-            return Ok(_userService.GetUserByToken(token));
+            Request.Headers.TryGetValue("Authorization", out var token);
+            var userId = _jwtUtils.ValidateJwtToken(token) ?? 0;
+            return Ok(_userService.GetUserById(userId));
         }
 
         [AllowAnonymous]

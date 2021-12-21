@@ -11,6 +11,6 @@ namespace PaymentService.Domain.Services
         void RevokeToken(string token, string ipAddress);
 
         IEnumerable<User> GetAllUsers();
-        User GetUserByToken(string token);
+        User GetUserById(int userId);
     }
 }

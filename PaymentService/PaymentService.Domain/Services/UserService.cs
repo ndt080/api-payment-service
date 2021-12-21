@@ -98,9 +98,9 @@ namespace PaymentService.Domain.Services
             return _userRepository.GetAll();
         }
 
-        public User GetUserByToken(string token)
+        public User GetUserById(int id)
         {
-            return _userRepository.GetByToken(token);
+            return _userRepository.GetById(id);
         }
 
         // helper methods
