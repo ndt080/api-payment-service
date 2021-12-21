@@ -90,7 +90,7 @@ struct SignUpView: View {
                 Spacer(minLength: 250)
                 
                 NavigationLink(
-                    destination: PolyclinicView()
+                    destination: RegisterView()
                         .navigationBarTitle("")
                         .navigationBarHidden(false)
                         .navigationBarBackButtonHidden(true),

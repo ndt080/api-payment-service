@@ -41,6 +41,11 @@
 		D41F66452772795200853E68 /* Apointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F66442772795200853E68 /* Apointment.swift */; };
 		D41F664827727A5900853E68 /* PolyclinicAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F664727727A5900853E68 /* PolyclinicAPI.swift */; };
 		D41F664B27727C9400853E68 /* PolyclinicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F664A27727C9400853E68 /* PolyclinicViewModel.swift */; };
+		D41F664E2772872900853E68 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F664D2772872800853E68 /* RegisterView.swift */; };
+		D41F665127728BD200853E68 /* RegistrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F665027728BD200853E68 /* RegistrationManager.swift */; };
+		D41F665427728BFA00853E68 /* RegistrationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F665327728BF900853E68 /* RegistrationAPI.swift */; };
+		D41F665627728DB500853E68 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F665527728DB500853E68 /* RegisterViewModel.swift */; };
+		D41F6659277291D300853E68 /* ServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F6658277291D300853E68 /* ServiceModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +84,11 @@
 		D41F66442772795200853E68 /* Apointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apointment.swift; sourceTree = "<group>"; };
 		D41F664727727A5900853E68 /* PolyclinicAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyclinicAPI.swift; sourceTree = "<group>"; };
 		D41F664A27727C9400853E68 /* PolyclinicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyclinicViewModel.swift; sourceTree = "<group>"; };
+		D41F664D2772872800853E68 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		D41F665027728BD200853E68 /* RegistrationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationManager.swift; sourceTree = "<group>"; };
+		D41F665327728BF900853E68 /* RegistrationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationAPI.swift; sourceTree = "<group>"; };
+		D41F665527728DB500853E68 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		D41F6658277291D300853E68 /* ServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +142,7 @@
 		D41F65FA27724B8900853E68 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				D41F664C2772871300853E68 /* RegisterView */,
 				D41F664927727C8200853E68 /* Polyclinic */,
 				D41F663D2772724800853E68 /* Services */,
 				D41F6636277267AE00853E68 /* Auth */,
@@ -142,6 +153,7 @@
 		D41F65FB27724B9900853E68 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				D41F664F27728BBD00853E68 /* Registration */,
 				D41F663E2772787200853E68 /* PolyclinicManager */,
 				D41F6629277256A500853E68 /* Extensions */,
 				D41F660C27724CDD00853E68 /* Base */,
@@ -317,6 +329,41 @@
 			path = Polyclinic;
 			sourceTree = "<group>";
 		};
+		D41F664C2772871300853E68 /* RegisterView */ = {
+			isa = PBXGroup;
+			children = (
+				D41F664D2772872800853E68 /* RegisterView.swift */,
+				D41F665527728DB500853E68 /* RegisterViewModel.swift */,
+			);
+			path = RegisterView;
+			sourceTree = "<group>";
+		};
+		D41F664F27728BBD00853E68 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				D41F6657277291BD00853E68 /* Model */,
+				D41F665227728BEE00853E68 /* API */,
+				D41F665027728BD200853E68 /* RegistrationManager.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		D41F665227728BEE00853E68 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				D41F665327728BF900853E68 /* RegistrationAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		D41F6657277291BD00853E68 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D41F6658277291D300853E68 /* ServiceModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -387,15 +434,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D41F6659277291D300853E68 /* ServiceModel.swift in Sources */,
+				D41F664E2772872900853E68 /* RegisterView.swift in Sources */,
 				D41F66452772795200853E68 /* Apointment.swift in Sources */,
 				D41F661527724FE600853E68 /* HTTPHeader.swift in Sources */,
 				D41F663127725A5600853E68 /* RegisterModel.swift in Sources */,
 				D41F662B277256B800853E68 /* URLRequest+Extension.swift in Sources */,
 				D41F66262772556500853E68 /* BodyParameterEncoder.swift in Sources */,
 				D41F65F127724AD400853E68 /* Persistence.swift in Sources */,
+				D41F665627728DB500853E68 /* RegisterViewModel.swift in Sources */,
 				D41F664B27727C9400853E68 /* PolyclinicViewModel.swift in Sources */,
+				D41F665427728BFA00853E68 /* RegistrationAPI.swift in Sources */,
 				D41F6617277250ED00853E68 /* Parameters.swift in Sources */,
 				D41F663327725BEA00853E68 /* PolyclinicView.swift in Sources */,
+				D41F665127728BD200853E68 /* RegistrationManager.swift in Sources */,
 				D41F660E27724D0F00853E68 /* NetworkAPI.swift in Sources */,
 				D41F660827724C6100853E68 /* AuthManager.swift in Sources */,
 				D41F6620277254B000853E68 /* FieldsEncoder.swift in Sources */,

@@ -1,0 +1,70 @@
+//
+//  RegistrationManager.swift
+//  Polyclinic
+//
+//  Created by Dzmitry Semenovich on 22.12.21.
+//
+
+import Foundation
+
+class RegistrationManager {
+    let router = Router<RegistrationAPI>(baseURL: URL(string: "https://api-payment-service.herokuapp.com")!)
+    
+    
+    public func handleNetworkResponse(_ response: HTTPURLResponse) -> NetworkError<Error> {
+        switch response.statusCode {
+        case 200...299 : return .success
+        case 401...500 : return .failure(NetworkResponse.authentificationError)
+        case 501...599 : return .failure(NetworkResponse.badRequest)
+        default: return .failure(NetworkResponse.failed)
+        }
+    }
+}
+
+extension RegistrationManager {
+    private func routerRequest<T: Codable>(_ route: RegistrationAPI,
+                                           decodeType: T.Type,
+                                           completion: @escaping (Result<T, Error>) -> Void,
+                                           progress: RouterProgressHandler? = nil) {
+            router.request(route, completion: { data, response, error in
+                
+                guard error == nil else {
+                    completion(.failure(error!))
+                    return
+                }
+                
+                guard let response = response as? HTTPURLResponse else {
+                    completion(.failure(NetworkResponse.unableToDecode))
+                    return
+                }
+                
+                let result = self.handleNetworkResponse(response)
+                switch result {
+                    case .success:
+                        guard let responseData = data else {
+                            completion(.failure(NetworkResponse.noData))
+                            return
+                        }
+                        do {
+                            let apiResponse: T = try JSONDecoder().decode(decodeType, from: responseData)
+                            completion(.success(apiResponse))
+                        } catch let error {
+                            print(error.localizedDescription)
+                            completion(.failure(NetworkResponse.unableToDecode))
+                        }
+                        
+                    case .failure(let failureError):
+                        completion(.failure(failureError))
+                }
+            }, progress: progress)
+        }
+    
+    func register(name: String, cost: Int, completion: @escaping (Result<ServiceModel, Error>) -> Void) {
+        routerRequest(.subscribe(name: name, cost: cost),
+                      decodeType: ServiceModel.self,
+                      completion: completion,
+                      progress: nil)
+    }
+}
+
+
