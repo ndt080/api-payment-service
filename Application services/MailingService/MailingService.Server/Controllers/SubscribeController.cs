@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MailingService.Server.Controllers
 {
     [ApiController]
-    [Route("api/subscribe/[controller]")]
+    [Route("api/[controller]")]
     public class SubscribeController : ControllerBase
     {
         private readonly IAccessService _accessService;
@@ -17,6 +17,20 @@ namespace MailingService.Server.Controllers
         public SubscribeController(IAccessService accessService)
         {
             _accessService = accessService;
+        }
+        
+        [HttpPost("GetKeysList")]
+        public async Task<IActionResult> GetKeysList()
+        {
+            try
+            {
+                var keys = await _accessService.GetKeysList();
+                return Ok(keys);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
         [HttpPost("AddKey")]
@@ -43,7 +57,7 @@ namespace MailingService.Server.Controllers
             }
         }
 
-        [HttpGet("RemoveKey")]
+        [HttpDelete("RemoveKey")]
         public async Task<IActionResult> RemoveKey(string key)
         {
             if (key == null)
@@ -62,7 +76,7 @@ namespace MailingService.Server.Controllers
             }
         }
 
-        [HttpGet("RemoveKeyById")]
+        [HttpDelete("RemoveKeyById")]
         public async Task<IActionResult> RemoveKeyById(int id)
         {
             try

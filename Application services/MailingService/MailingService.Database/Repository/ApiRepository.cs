@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using MailingService.Database.Context;
 using MailingService.Domain.Models.Api;
@@ -21,6 +22,11 @@ namespace MailingService.Database.Repository
             // _context.Entry(key).State = EntityState.Modified;
             _context.ApiKeys.Add(key);
             _context.SaveChanges();
+        }
+
+        public List<ApiKey> GetKeys()
+        {
+            return _context.ApiKeys.ToList();
         }
 
         public void RemoveKey(string key)
