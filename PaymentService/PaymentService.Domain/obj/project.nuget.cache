@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "OcGgk6B4POWUyQFB2vVN/T16mbP4qbnNibIyXNH5deM/2waxN6YwTThhnujavvt2lVIKTSjHUjR/oMZCZH2N2A==",
+  "dgSpecHash": "mSjZGQDeComlz1imsk2vn9HeSM4h4tjBQH6133fGMnfH8eRAm+dHsu3xR+upjeTPpQx/FqFKeQ11d/esagYWaA==",
   "success": true,
   "projectFilePath": "D:\\5sem\\SAO\\3\\api-payment-service\\PaymentService\\PaymentService.Domain\\PaymentService.Domain.csproj",
   "expectedPackageFiles": [
@@ -13,6 +13,7 @@
     "C:\\Users\\Рома\\.nuget\\packages\\microsoft.identitymodel.protocols\\6.7.1\\microsoft.identitymodel.protocols.6.7.1.nupkg.sha512",
     "C:\\Users\\Рома\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.7.1\\microsoft.identitymodel.protocols.openidconnect.6.7.1.nupkg.sha512",
     "C:\\Users\\Рома\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.14.1\\microsoft.identitymodel.tokens.6.14.1.nupkg.sha512",
+    "C:\\Users\\Рома\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Рома\\.nuget\\packages\\system.identitymodel.tokens.jwt\\6.14.1\\system.identitymodel.tokens.jwt.6.14.1.nupkg.sha512",
     "C:\\Users\\Рома\\.nuget\\packages\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512"
   ],

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bMZyeKECQeUwOEZjP1Me1hb3hZQsyxPJioWAXxZMa2ZChnzXSoToDEdQ1RhzMPfpaHhbZ03KXactL1NE0rr1YQ==",
+  "dgSpecHash": "Q4/uBdn9LTOMieLucEbzIYZ8HTH08fY3jJ5MsBzdkka6a00uZwgT3qjJVmmmPKRn0kKlTHYCQcRpymDEnM9r8Q==",
   "success": true,
   "projectFilePath": "D:\\5sem\\SAO\\3\\api-payment-service\\PaymentService\\PaymentService.Database\\PaymentService.Database.csproj",
   "expectedPackageFiles": [
@@ -33,6 +33,7 @@
     "C:\\Users\\Рома\\.nuget\\packages\\microsoft.identitymodel.protocols\\6.7.1\\microsoft.identitymodel.protocols.6.7.1.nupkg.sha512",
     "C:\\Users\\Рома\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.7.1\\microsoft.identitymodel.protocols.openidconnect.6.7.1.nupkg.sha512",
     "C:\\Users\\Рома\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.14.1\\microsoft.identitymodel.tokens.6.14.1.nupkg.sha512",
+    "C:\\Users\\Рома\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Рома\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.4\\sqlitepclraw.bundle_e_sqlite3.2.0.4.nupkg.sha512",
     "C:\\Users\\Рома\\.nuget\\packages\\sqlitepclraw.core\\2.0.4\\sqlitepclraw.core.2.0.4.nupkg.sha512",
     "C:\\Users\\Рома\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.4\\sqlitepclraw.lib.e_sqlite3.2.0.4.nupkg.sha512",

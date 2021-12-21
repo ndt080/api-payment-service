@@ -25,19 +25,19 @@ namespace PaymentService.Server.Controllers
             _userRepository = userRepository;
             _jwtUtils = jwtUtils;
         }
-
+        
         [HttpPost("subscribe")]
         public async Task<IActionResult> Subscribe(SubscriptionRequest request)
         {
             Request.Headers.TryGetValue("Authorization", out var token);
             var userId = _jwtUtils.ValidateJwtToken(token) ?? 0;
 
-            var res = await _registerService.GetServiceInfo(request.ServiceName);
+            var res = await _registerService.GetServiceInfo(token, request.ServiceName);
 
             if (res is null)
                 return BadRequest(new { message = "Invalid Applied Service name" });
 
-            if (request.PaymentAmount < res.SubscriptionCost)
+            if (request.PaymentAmount < res.Cost)
                 return BadRequest(new { message = "Insufficient funds for subscription." });
 
             var apiKey = await _registerService.GenerateApiKey();
@@ -47,12 +47,12 @@ namespace PaymentService.Server.Controllers
                 ServiceName = res.Name,
                 ApiKey = apiKey,
                 Start = DateTime.Now,
-                End = DateTime.Now.AddDays(res.SubscriptionDuration)
+                End = DateTime.Now.AddDays(res.Duration)
             };
 
             _userRepository.AddSubscriptions(userId, subscription);
 
-            await _registerService.SendApiKeyToService(subscription, res.Url, res.AddKeyMethod);
+            await _registerService.SendApiKeyToService(token, subscription, res.Url, res.Key_method);
             return Ok(subscription);
         }
 
