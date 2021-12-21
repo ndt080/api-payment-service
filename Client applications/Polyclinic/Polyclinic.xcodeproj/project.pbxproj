@@ -1,0 +1,639 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D41F65E827724AD300853E68 /* PolyclinicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F65E727724AD300853E68 /* PolyclinicApp.swift */; };
+		D41F65EA27724AD300853E68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F65E927724AD300853E68 /* ContentView.swift */; };
+		D41F65EC27724AD400853E68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D41F65EB27724AD400853E68 /* Assets.xcassets */; };
+		D41F65EF27724AD400853E68 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D41F65EE27724AD400853E68 /* Preview Assets.xcassets */; };
+		D41F65F127724AD400853E68 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F65F027724AD400853E68 /* Persistence.swift */; };
+		D41F65F427724AD400853E68 /* Polyclinic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D41F65F227724AD400853E68 /* Polyclinic.xcdatamodeld */; };
+		D41F660027724BE500853E68 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F65FF27724BE500853E68 /* NetworkManager.swift */; };
+		D41F660227724BFB00853E68 /* NetworkManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F660127724BFB00853E68 /* NetworkManagerProtocol.swift */; };
+		D41F660627724C5B00853E68 /* AuthManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F660527724C5B00853E68 /* AuthManagerProtocol.swift */; };
+		D41F660827724C6100853E68 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F660727724C6100853E68 /* AuthManager.swift */; };
+		D41F660B27724C9500853E68 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F660A27724C9500853E68 /* AuthAPI.swift */; };
+		D41F660E27724D0F00853E68 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F660D27724D0F00853E68 /* NetworkAPI.swift */; };
+		D41F661327724FB100853E68 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F661227724FB100853E68 /* HTTPMethod.swift */; };
+		D41F661527724FE600853E68 /* HTTPHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F661427724FE600853E68 /* HTTPHeader.swift */; };
+		D41F6617277250ED00853E68 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F6616277250ED00853E68 /* Parameters.swift */; };
+		D41F661A2772519400853E68 /* DictionaryEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F66192772519400853E68 /* DictionaryEncoder.swift */; };
+		D41F661C277253E000853E68 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F661B277253E000853E68 /* NetworkError.swift */; };
+		D41F661E2772542500853E68 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F661D2772542500853E68 /* Router.swift */; };
+		D41F6620277254B000853E68 /* FieldsEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F661F277254B000853E68 /* FieldsEncoder.swift */; };
+		D41F6622277254CD00853E68 /* URLParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F6621277254CD00853E68 /* URLParameterEncoder.swift */; };
+		D41F6624277254F100853E68 /* ParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F6623277254F100853E68 /* ParameterEncoder.swift */; };
+		D41F66262772556500853E68 /* BodyParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F66252772556500853E68 /* BodyParameterEncoder.swift */; };
+		D41F662B277256B800853E68 /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F662A277256B800853E68 /* URLRequest+Extension.swift */; };
+		D41F662E2772581200853E68 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F662D2772581200853E68 /* NetworkResponse.swift */; };
+		D41F663127725A5600853E68 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F663027725A5600853E68 /* RegisterModel.swift */; };
+		D41F663327725BEA00853E68 /* PolyclinicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F663227725BEA00853E68 /* PolyclinicView.swift */; };
+		D41F663527725C0A00853E68 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F663427725C0A00853E68 /* SignUpView.swift */; };
+		D41F6639277267CC00853E68 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F6638277267CC00853E68 /* SignUpViewModel.swift */; };
+		D41F663C27726B3700853E68 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F663B27726B3700853E68 /* UserDefaultsManager.swift */; };
+		D41F6640277278A200853E68 /* PolyclinicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F663F277278A200853E68 /* PolyclinicManager.swift */; };
+		D41F6642277278CB00853E68 /* PolyclinicManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F6641277278CB00853E68 /* PolyclinicManagerProtocol.swift */; };
+		D41F66452772795200853E68 /* Apointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F66442772795200853E68 /* Apointment.swift */; };
+		D41F664827727A5900853E68 /* PolyclinicAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F664727727A5900853E68 /* PolyclinicAPI.swift */; };
+		D41F664B27727C9400853E68 /* PolyclinicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F664A27727C9400853E68 /* PolyclinicViewModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D41F65E427724AD300853E68 /* Polyclinic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Polyclinic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D41F65E727724AD300853E68 /* PolyclinicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyclinicApp.swift; sourceTree = "<group>"; };
+		D41F65E927724AD300853E68 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D41F65EB27724AD400853E68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D41F65EE27724AD400853E68 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D41F65F027724AD400853E68 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		D41F65F327724AD400853E68 /* Polyclinic.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Polyclinic.xcdatamodel; sourceTree = "<group>"; };
+		D41F65FF27724BE500853E68 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D41F660127724BFB00853E68 /* NetworkManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerProtocol.swift; sourceTree = "<group>"; };
+		D41F660527724C5B00853E68 /* AuthManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManagerProtocol.swift; sourceTree = "<group>"; };
+		D41F660727724C6100853E68 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		D41F660A27724C9500853E68 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
+		D41F660D27724D0F00853E68 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
+		D41F661227724FB100853E68 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		D41F661427724FE600853E68 /* HTTPHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeader.swift; sourceTree = "<group>"; };
+		D41F6616277250ED00853E68 /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
+		D41F66192772519400853E68 /* DictionaryEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryEncoder.swift; sourceTree = "<group>"; };
+		D41F661B277253E000853E68 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		D41F661D2772542500853E68 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		D41F661F277254B000853E68 /* FieldsEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldsEncoder.swift; sourceTree = "<group>"; };
+		D41F6621277254CD00853E68 /* URLParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameterEncoder.swift; sourceTree = "<group>"; };
+		D41F6623277254F100853E68 /* ParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncoder.swift; sourceTree = "<group>"; };
+		D41F66252772556500853E68 /* BodyParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyParameterEncoder.swift; sourceTree = "<group>"; };
+		D41F662A277256B800853E68 /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
+		D41F662D2772581200853E68 /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
+		D41F663027725A5600853E68 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
+		D41F663227725BEA00853E68 /* PolyclinicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyclinicView.swift; sourceTree = "<group>"; };
+		D41F663427725C0A00853E68 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		D41F6638277267CC00853E68 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		D41F663B27726B3700853E68 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		D41F663F277278A200853E68 /* PolyclinicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyclinicManager.swift; sourceTree = "<group>"; };
+		D41F6641277278CB00853E68 /* PolyclinicManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyclinicManagerProtocol.swift; sourceTree = "<group>"; };
+		D41F66442772795200853E68 /* Apointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apointment.swift; sourceTree = "<group>"; };
+		D41F664727727A5900853E68 /* PolyclinicAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyclinicAPI.swift; sourceTree = "<group>"; };
+		D41F664A27727C9400853E68 /* PolyclinicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyclinicViewModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D41F65E127724AD300853E68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D41F65DB27724AD300853E68 = {
+			isa = PBXGroup;
+			children = (
+				D41F65E627724AD300853E68 /* Polyclinic */,
+				D41F65E527724AD300853E68 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D41F65E527724AD300853E68 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D41F65E427724AD300853E68 /* Polyclinic.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D41F65E627724AD300853E68 /* Polyclinic */ = {
+			isa = PBXGroup;
+			children = (
+				D41F65FE27724BC600853E68 /* Suporting files */,
+				D41F65FD27724BB600853E68 /* Storage */,
+				D41F65FC27724BA800853E68 /* App */,
+				D41F65FB27724B9900853E68 /* Network */,
+				D41F65FA27724B8900853E68 /* Modules */,
+				D41F65ED27724AD400853E68 /* Preview Content */,
+			);
+			path = Polyclinic;
+			sourceTree = "<group>";
+		};
+		D41F65ED27724AD400853E68 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				D41F65EE27724AD400853E68 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D41F65FA27724B8900853E68 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				D41F664927727C8200853E68 /* Polyclinic */,
+				D41F663D2772724800853E68 /* Services */,
+				D41F6636277267AE00853E68 /* Auth */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		D41F65FB27724B9900853E68 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D41F663E2772787200853E68 /* PolyclinicManager */,
+				D41F6629277256A500853E68 /* Extensions */,
+				D41F660C27724CDD00853E68 /* Base */,
+				D41F660427724C4500853E68 /* AuthManager */,
+				D41F660327724C3C00853E68 /* NetworkManager */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		D41F65FC27724BA800853E68 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D41F65E727724AD300853E68 /* PolyclinicApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		D41F65FD27724BB600853E68 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				D41F663A27726B2500853E68 /* UserDefaults */,
+				D41F65F027724AD400853E68 /* Persistence.swift */,
+				D41F65F227724AD400853E68 /* Polyclinic.xcdatamodeld */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		D41F65FE27724BC600853E68 /* Suporting files */ = {
+			isa = PBXGroup;
+			children = (
+				D41F65EB27724AD400853E68 /* Assets.xcassets */,
+			);
+			path = "Suporting files";
+			sourceTree = "<group>";
+		};
+		D41F660327724C3C00853E68 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				D41F65FF27724BE500853E68 /* NetworkManager.swift */,
+				D41F660127724BFB00853E68 /* NetworkManagerProtocol.swift */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		D41F660427724C4500853E68 /* AuthManager */ = {
+			isa = PBXGroup;
+			children = (
+				D41F662F2772588200853E68 /* Models */,
+				D41F660927724C8C00853E68 /* API */,
+				D41F660527724C5B00853E68 /* AuthManagerProtocol.swift */,
+				D41F660727724C6100853E68 /* AuthManager.swift */,
+			);
+			path = AuthManager;
+			sourceTree = "<group>";
+		};
+		D41F660927724C8C00853E68 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				D41F660A27724C9500853E68 /* AuthAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		D41F660C27724CDD00853E68 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				D41F662C277256ED00853E68 /* Encoders */,
+				D41F660D27724D0F00853E68 /* NetworkAPI.swift */,
+				D41F661227724FB100853E68 /* HTTPMethod.swift */,
+				D41F661427724FE600853E68 /* HTTPHeader.swift */,
+				D41F6616277250ED00853E68 /* Parameters.swift */,
+				D41F661B277253E000853E68 /* NetworkError.swift */,
+				D41F661D2772542500853E68 /* Router.swift */,
+				D41F662D2772581200853E68 /* NetworkResponse.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		D41F6629277256A500853E68 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D41F662A277256B800853E68 /* URLRequest+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D41F662C277256ED00853E68 /* Encoders */ = {
+			isa = PBXGroup;
+			children = (
+				D41F661F277254B000853E68 /* FieldsEncoder.swift */,
+				D41F6621277254CD00853E68 /* URLParameterEncoder.swift */,
+				D41F6623277254F100853E68 /* ParameterEncoder.swift */,
+				D41F66252772556500853E68 /* BodyParameterEncoder.swift */,
+				D41F66192772519400853E68 /* DictionaryEncoder.swift */,
+			);
+			path = Encoders;
+			sourceTree = "<group>";
+		};
+		D41F662F2772588200853E68 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D41F663027725A5600853E68 /* RegisterModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D41F6636277267AE00853E68 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				D41F6637277267B900853E68 /* SignUp */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		D41F6637277267B900853E68 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				D41F663427725C0A00853E68 /* SignUpView.swift */,
+				D41F6638277267CC00853E68 /* SignUpViewModel.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		D41F663A27726B2500853E68 /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				D41F663B27726B3700853E68 /* UserDefaultsManager.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		D41F663D2772724800853E68 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D41F65E927724AD300853E68 /* ContentView.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D41F663E2772787200853E68 /* PolyclinicManager */ = {
+			isa = PBXGroup;
+			children = (
+				D41F664627727A4C00853E68 /* API */,
+				D41F66432772794400853E68 /* Models */,
+				D41F663F277278A200853E68 /* PolyclinicManager.swift */,
+				D41F6641277278CB00853E68 /* PolyclinicManagerProtocol.swift */,
+			);
+			path = PolyclinicManager;
+			sourceTree = "<group>";
+		};
+		D41F66432772794400853E68 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D41F66442772795200853E68 /* Apointment.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D41F664627727A4C00853E68 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				D41F664727727A5900853E68 /* PolyclinicAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		D41F664927727C8200853E68 /* Polyclinic */ = {
+			isa = PBXGroup;
+			children = (
+				D41F663227725BEA00853E68 /* PolyclinicView.swift */,
+				D41F664A27727C9400853E68 /* PolyclinicViewModel.swift */,
+			);
+			path = Polyclinic;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D41F65E327724AD300853E68 /* Polyclinic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D41F65F727724AD400853E68 /* Build configuration list for PBXNativeTarget "Polyclinic" */;
+			buildPhases = (
+				D41F65E027724AD300853E68 /* Sources */,
+				D41F65E127724AD300853E68 /* Frameworks */,
+				D41F65E227724AD300853E68 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Polyclinic;
+			productName = Polyclinic;
+			productReference = D41F65E427724AD300853E68 /* Polyclinic.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41F65DC27724AD300853E68 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1310;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					D41F65E327724AD300853E68 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+				};
+			};
+			buildConfigurationList = D41F65DF27724AD300853E68 /* Build configuration list for PBXProject "Polyclinic" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D41F65DB27724AD300853E68;
+			productRefGroup = D41F65E527724AD300853E68 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D41F65E327724AD300853E68 /* Polyclinic */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D41F65E227724AD300853E68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D41F65EF27724AD400853E68 /* Preview Assets.xcassets in Resources */,
+				D41F65EC27724AD400853E68 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D41F65E027724AD300853E68 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D41F66452772795200853E68 /* Apointment.swift in Sources */,
+				D41F661527724FE600853E68 /* HTTPHeader.swift in Sources */,
+				D41F663127725A5600853E68 /* RegisterModel.swift in Sources */,
+				D41F662B277256B800853E68 /* URLRequest+Extension.swift in Sources */,
+				D41F66262772556500853E68 /* BodyParameterEncoder.swift in Sources */,
+				D41F65F127724AD400853E68 /* Persistence.swift in Sources */,
+				D41F664B27727C9400853E68 /* PolyclinicViewModel.swift in Sources */,
+				D41F6617277250ED00853E68 /* Parameters.swift in Sources */,
+				D41F663327725BEA00853E68 /* PolyclinicView.swift in Sources */,
+				D41F660E27724D0F00853E68 /* NetworkAPI.swift in Sources */,
+				D41F660827724C6100853E68 /* AuthManager.swift in Sources */,
+				D41F6620277254B000853E68 /* FieldsEncoder.swift in Sources */,
+				D41F65F427724AD400853E68 /* Polyclinic.xcdatamodeld in Sources */,
+				D41F660027724BE500853E68 /* NetworkManager.swift in Sources */,
+				D41F6622277254CD00853E68 /* URLParameterEncoder.swift in Sources */,
+				D41F65EA27724AD300853E68 /* ContentView.swift in Sources */,
+				D41F6639277267CC00853E68 /* SignUpViewModel.swift in Sources */,
+				D41F661E2772542500853E68 /* Router.swift in Sources */,
+				D41F660227724BFB00853E68 /* NetworkManagerProtocol.swift in Sources */,
+				D41F663527725C0A00853E68 /* SignUpView.swift in Sources */,
+				D41F661C277253E000853E68 /* NetworkError.swift in Sources */,
+				D41F661327724FB100853E68 /* HTTPMethod.swift in Sources */,
+				D41F664827727A5900853E68 /* PolyclinicAPI.swift in Sources */,
+				D41F660627724C5B00853E68 /* AuthManagerProtocol.swift in Sources */,
+				D41F6642277278CB00853E68 /* PolyclinicManagerProtocol.swift in Sources */,
+				D41F660B27724C9500853E68 /* AuthAPI.swift in Sources */,
+				D41F661A2772519400853E68 /* DictionaryEncoder.swift in Sources */,
+				D41F663C27726B3700853E68 /* UserDefaultsManager.swift in Sources */,
+				D41F662E2772581200853E68 /* NetworkResponse.swift in Sources */,
+				D41F6624277254F100853E68 /* ParameterEncoder.swift in Sources */,
+				D41F65E827724AD300853E68 /* PolyclinicApp.swift in Sources */,
+				D41F6640277278A200853E68 /* PolyclinicManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D41F65F527724AD400853E68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D41F65F627724AD400853E68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D41F65F827724AD400853E68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Polyclinic/Preview Content\"";
+				DEVELOPMENT_TEAM = J9ZD55BC9Y;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dzmitry-semianovich.Polyclinic";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D41F65F927724AD400853E68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Polyclinic/Preview Content\"";
+				DEVELOPMENT_TEAM = J9ZD55BC9Y;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dzmitry-semianovich.Polyclinic";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D41F65DF27724AD300853E68 /* Build configuration list for PBXProject "Polyclinic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D41F65F527724AD400853E68 /* Debug */,
+				D41F65F627724AD400853E68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D41F65F727724AD400853E68 /* Build configuration list for PBXNativeTarget "Polyclinic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D41F65F827724AD400853E68 /* Debug */,
+				D41F65F927724AD400853E68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D41F65F227724AD400853E68 /* Polyclinic.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D41F65F327724AD400853E68 /* Polyclinic.xcdatamodel */,
+			);
+			currentVersion = D41F65F327724AD400853E68 /* Polyclinic.xcdatamodel */;
+			path = Polyclinic.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = D41F65DC27724AD300853E68 /* Project object */;
+}
