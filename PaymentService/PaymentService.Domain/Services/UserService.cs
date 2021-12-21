@@ -98,6 +98,11 @@ namespace PaymentService.Domain.Services
             return _userRepository.GetAll();
         }
 
+        public User GetUserByToken(string token)
+        {
+            return _userRepository.GetByToken(token);
+        }
+
         // helper methods
 
         private User GetUserByRefreshToken(string token)

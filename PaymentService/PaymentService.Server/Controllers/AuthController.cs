@@ -54,6 +54,15 @@ namespace PaymentService.Server.Controllers
         {
             return Ok(_userService.GetAllUsers());
         }
+        
+        [AllowAnonymous]
+        [HttpGet("user")]
+        public IActionResult CurrentUsers()
+        {
+            //Request.Headers.TryGetValue("Authorization", out var token);
+            var token = Request.Cookies["refreshToken"];
+            return Ok(_userService.GetUserByToken(token));
+        }
 
         [AllowAnonymous]
         [HttpPost("refresh-token")]
