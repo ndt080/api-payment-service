@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -56,13 +57,14 @@ namespace PaymentService.Server.Controllers
         {
             return Ok(_userService.GetAllUsers());
         }
-        
+
         [HttpGet("user")]
         public IActionResult CurrentUsers()
         {
             Request.Headers.TryGetValue("Authorization", out var token);
             var userId = _jwtUtils.ValidateJwtToken(token) ?? 0;
-            return Ok(_userService.GetUserById(userId));
+            var user = _userService.GetAllUsers().First(x => x.Id == userId);
+            return Ok(user);
         }
 
         [AllowAnonymous]
