@@ -17,11 +17,6 @@ import {StorageAuthService} from "./services/storage-auth.service";
         AuthService,
         StorageAuthService,
         GlobalGuard,
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: TokenInterceptor,
-            multi: true
-        },
     ],
 })
 export class AuthModule {

@@ -1,0 +1,47 @@
+<app-nav-bar></app-nav-bar>
+<div class="layout">
+  <div class="layout__header">
+    <p class="header__title">Mailing</p>
+  </div>
+  <ng-template [ngIfElse]="notSubs" [ngIf]="!!mailingSubscription">
+    <div class="mailing">
+      <form (ngSubmit)="onSubmit()" [formGroup]="form" class="mailing__form" novalidate>
+        <div class="mailing__group">
+          <p class="mailing__label">To email: </p>
+          <input
+            [ngClass]="{'sign__input--error': form.controls['toEmail'].invalid && form.controls['toEmail'].touched}"
+            class="mailing__input"
+            formControlName="toEmail"
+            name="toEmail"
+            type="email"
+          >
+        </div>
+        <div class="mailing__group">
+          <p class="mailing__label">Subject: </p>
+          <input
+            [ngClass]="{'sign__input--error': form.controls['subject'].invalid && form.controls['subject'].touched}"
+            class="mailing__input"
+            formControlName="subject"
+            name="subject"
+            type="text"
+          >
+        </div>
+        <div class="mailing__group">
+          <p class="mailing__label large-box">Body: </p>
+          <textarea
+            [ngClass]="{'sign__input--error': form.controls['body'].invalid && form.controls['body'].touched}"
+            class="mailing__input large-box"
+            formControlName="body"
+            name="body"
+            type="text"
+          >
+          </textarea>
+        </div>
+        <button [disabled]="form.invalid" class="mailing__button">Send email</button>
+      </form>
+    </div>
+  </ng-template>
+  <ng-template #notSubs>
+    <h3>There are no active Mailing subscription</h3>
+  </ng-template>
+</div>

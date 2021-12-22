@@ -18,7 +18,7 @@ export class TokenInterceptor implements HttpInterceptor {
     let jwtToken = this.storage.getJwtToken()
 
     if (jwtToken) {
-      request = this.addToken(request, jwtToken);
+      request = TokenInterceptor.addToken(request, jwtToken);
     }
 
     return next.handle(request).pipe(catchError(error => {
@@ -30,10 +30,13 @@ export class TokenInterceptor implements HttpInterceptor {
     }));
   }
 
-  private addToken(request: HttpRequest<any>, token: string) {
+  private static addToken(request: HttpRequest<any>, token: string) {
     return request.clone({
       setHeaders: {
-        'Authorization': `${token}`
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
+        Authorization: `${token}`
       }
     });
   }
@@ -47,7 +50,7 @@ export class TokenInterceptor implements HttpInterceptor {
         switchMap((resp: any) => {
           this.isRefreshing = false;
           this.refreshTokenSubject.next(resp?.['tokens']?.['acessToken']);
-          return next.handle(this.addToken(request, resp?.['tokens']?.['acessToken']));
+          return next.handle(TokenInterceptor.addToken(request, resp?.['tokens']?.['acessToken']));
         }));
 
     } else {
@@ -55,7 +58,7 @@ export class TokenInterceptor implements HttpInterceptor {
         filter(token => token != null),
         take(1),
         switchMap(jwt => {
-          return next.handle(this.addToken(request, jwt));
+          return next.handle(TokenInterceptor.addToken(request, jwt));
         }));
     }
   }

@@ -8,6 +8,8 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthModule} from "./features/auth/auth.module";
+import { TokenInterceptor } from "@features/auth/token.interceptor";
+import {MatDialogModule} from '@angular/material/dialog'
 
 
 @NgModule({
@@ -15,6 +17,7 @@ import {AuthModule} from "./features/auth/auth.module";
     AppComponent,
   ],
   imports: [
+    MatDialogModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
@@ -25,6 +28,13 @@ import {AuthModule} from "./features/auth/auth.module";
     AuthModule
   ],
   exports: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

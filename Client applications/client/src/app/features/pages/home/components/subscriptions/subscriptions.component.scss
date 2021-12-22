@@ -1,0 +1,38 @@
+.subscription {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  border: 2px solid #0a0a0a;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+
+  &__title {
+    font-size: 1.5em;
+    font-weight: 600;
+  }
+
+  &__field p {
+    text-overflow: ellipsis
+  }
+
+  &__box {
+    padding: 15px;
+  }
+
+  &__button {
+    font-size: 1em;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background: rgb(255,75,43);
+    cursor: pointer;
+    color: white;
+    border: none;
+  }
+
+  &__button:hover {
+    background: rgba(255,65,108,1);
+  }
+}

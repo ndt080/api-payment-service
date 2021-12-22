@@ -4,24 +4,27 @@ import { Observable, of } from "rxjs";
 import { tap } from "rxjs/operators";
 
 import { environment } from "src/environments/environment";
-import { UserModel } from "@models/user.model";
+import { User } from "@models/user.model";
 import { NotificationService } from "@core/services/notification.service";
 import { Router } from "@angular/router";
 import { StorageAuthService } from "./storage-auth.service";
 import { Tokens } from "@models/tokens.model";
+import { UserStorageService } from "@features/auth/services/user-storage.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
   constructor(private http: HttpClient, private notify: NotificationService,
+              private userStorageService: UserStorageService,
               private router: Router, private storage: StorageAuthService) {
   }
 
-  login(user: UserModel): Observable<UserModel> {
-    return this.http.post<UserModel>(`${environment.paymentUrl}/Auth/login`, user)
+  login(user: User): Observable<User> {
+    return this.http.post<User>(`${environment.paymentUrl}/Auth/login`, user)
       .pipe(
         tap((user) => {
+            this.userStorageService.setUserData(user);
             this.storage.storeTokens({
               access: user.jwtToken,
               refresh: user.refreshToken,
@@ -35,10 +38,11 @@ export class AuthService {
       );
   }
 
-  register(user: UserModel): Observable<UserModel> {
+  register(user: User): Observable<User> {
     return this.http.post<any>(`${environment.paymentUrl}/Auth/register`, user)
       .pipe(
         tap((user) => {
+            this.userStorageService.setUserData(user);
             this.storage.storeTokens({
               access: user.jwtToken,
               refresh: user.refreshToken,
@@ -55,7 +59,7 @@ export class AuthService {
   logout(): Observable<boolean> {
     try {
       this.storage.removeTokens();
-      this.router.navigate(["/login"]);
+      this.userStorageService.removeUserData();
     } catch (e) {
       this.notify.showError(e, "Error: Logout");
       return of(false);
@@ -70,18 +74,18 @@ export class AuthService {
   }
 
   refreshToken() {
-    return this.http.post<any>(`${environment.paymentUrl}/api/Auth/revoke-token`,
-      {
-        token: this.storage.getRefreshToken(),
-      }).pipe(
-      tap((resp) => {
-          this.storage.storeJwtToken(resp?.["tokens"]?.["acessToken"]);
-          this.notify.showSuccess("Refresh token complete!", "Refresh token");
+    return this.http.post<any>(`${environment.paymentUrl}/Auth/refresh-token`, {}).pipe(
+      tap((user) => {
+          this.userStorageService.setUserData(user);
+          this.storage.storeTokens({
+            access: user.jwtToken,
+            refresh: user.refreshToken,
+          } as Tokens);
         },
         (err) => {
           this.notify.showError(err.error.message, "Error: Refresh token");
         },
-        () => console.log("Complete refresh token"),
+        () => this.notify.showSuccess("Refresh token complete!", "Refresh token")
       ));
   }
 }

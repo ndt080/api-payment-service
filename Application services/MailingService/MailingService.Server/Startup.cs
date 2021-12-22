@@ -47,7 +47,12 @@ namespace MailingService.Server
             app.UseSwaggerUI(c =>
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "MailingService.Server v1"));
 
-            app.UseHttpsRedirection();
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+
+            app.UseHttpsRedirection(); 
             app.UseRouting();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
