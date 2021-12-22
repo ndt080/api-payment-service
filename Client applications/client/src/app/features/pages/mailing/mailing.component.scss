@@ -1,0 +1,98 @@
+.layout {
+  box-sizing: border-box;
+  width: 100vw;
+  padding: 50px;
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .header__button {
+      font-size: 1.2em;
+      padding: 10px 15px;
+      border-radius: 15px;
+      background: rgb(255,75,43);
+      cursor: pointer;
+      color: white;
+      border: none;
+    }
+
+    .header__button:hover {
+      background: rgba(255,65,108,1);
+    }
+
+    .header__title {
+      font-size: 2em;
+      font-weight: 700;
+    }
+  }
+
+
+  .mailing {
+    &__form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: 100%;
+      padding: 10px;
+      font-size: 1.3em;
+    }
+
+    &__header {
+      margin-bottom: 20px;
+    }
+
+    &__label {
+      font-weight: 300;
+      margin-right: 20px;
+      max-width: 200px;
+      min-width: 100px;
+    }
+
+    &__input {
+      font-size: 1.3rem;
+      color: #333333;
+      width: 100%;
+    }
+
+    &__input.large-box {
+      min-height: 300px;
+    }
+
+    &__group {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    &__button {
+      align-self: flex-end;
+      margin-top: 20px;
+      font-size: 1em;
+      padding: 7px 10px;
+      border-radius: 10px;
+      background: rgb(255,75,43);
+      cursor: pointer;
+      color: white;
+      border: none;
+    }
+
+    &__button:disabled {
+      background: gray;
+      cursor: default;
+    }
+
+    &__button:hover:enabled {
+      background: rgba(255,65,108,1);
+    }
+  }
+
+}

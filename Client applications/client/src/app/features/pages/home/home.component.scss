@@ -1,0 +1,33 @@
+.layout {
+  box-sizing: border-box;
+  width: 100vw;
+  padding: 50px;
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .header__button {
+      font-size: 1.2em;
+      padding: 10px 15px;
+      border-radius: 15px;
+      background: rgb(255,75,43);
+      cursor: pointer;
+      color: white;
+      border: none;
+    }
+
+    .header__button:hover {
+      background: rgba(255,65,108,1);
+    }
+
+    .header__title {
+      font-size: 2em;
+      font-weight: 700;
+    }
+  }
+}

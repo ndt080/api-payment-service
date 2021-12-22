@@ -1,0 +1,22 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form" class="sign__form" novalidate>
+  <h1 class="sign__header">Sign in</h1>
+  <label>
+    <input [ngClass]="{'sign__input--error': form.controls['email'].invalid && form.controls['email'].touched}"
+           class="sign__input"
+           formControlName="email"
+           name="email"
+           placeholder="Email"
+           type="email"
+    >
+  </label>
+  <label>
+    <input [ngClass]="{'sign__input--error': form.controls['password'].invalid && form.controls['password'].touched}"
+           class="sign__input"
+           formControlName="password"
+           name="password"
+           placeholder="Password"
+           type="password"
+    >
+  </label>
+  <button [disabled]="form.invalid && form.touched" class="sign__button">Sign in</button>
+</form>

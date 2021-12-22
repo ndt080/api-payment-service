@@ -1,0 +1,55 @@
+.subs-modal {
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-width: 350px;
+    padding: 10px;
+    font-size: 1.3em;
+  }
+
+  &__header {
+    margin-bottom: 20px;
+  }
+
+  &__label {
+    font-weight: 300;
+    margin-right: 20px;
+  }
+
+  &__input {
+    font-size: 1.3rem;
+    border: none;
+    border-bottom: 1px solid #0a0a0a;
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  &__button {
+    align-self: flex-end;
+    margin-top: 20px;
+    font-size: 1em;
+    padding: 7px 10px;
+    border-radius: 10px;
+    background: rgb(255,75,43);
+    cursor: pointer;
+    color: white;
+    border: none;
+  }
+
+  &__button:disabled {
+    background: gray;
+    cursor: default;
+  }
+
+  &__button:hover:enabled {
+    background: rgba(255,65,108,1);
+  }
+}

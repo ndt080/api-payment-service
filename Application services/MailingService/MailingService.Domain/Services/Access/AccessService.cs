@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MailingService.Domain.Models.Api;
 using MailingService.Domain.Repository;
 
@@ -16,6 +17,11 @@ namespace MailingService.Domain.Services.Access
         public Task<bool> CheckAccess(string apiKey)
         {
             return Task.Run(() => _apiRepository.CheckAccess(apiKey));
+        }
+
+        public Task<List<ApiKey>> GetKeysList()
+        {
+            return Task.Run(() => _apiRepository.GetKeys());
         }
 
         public Task AddApiKey(ApiKey apiKey)

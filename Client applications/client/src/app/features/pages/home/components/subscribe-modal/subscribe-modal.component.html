@@ -1,0 +1,26 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form" class="subs-modal__form" novalidate>
+  <h1 class="subs-modal__header">Subscribe to the service</h1>
+  <div class="subs-modal__group">
+    <p class="subs-modal__label">Service name: </p>
+    <input
+      [ngClass]="{'sign__input--error': form.controls['serviceName'].invalid && form.controls['serviceName'].touched}"
+      class="subs-modal__input"
+      formControlName="serviceName"
+      name="serviceName"
+      placeholder="Enter value"
+      type="text"
+    >
+  </div>
+  <div class="subs-modal__group">
+    <p class="subs-modal__label">Payment amount: </p>
+    <input
+      [ngClass]="{'sign__input--error': form.controls['paymentAmount'].invalid && form.controls['paymentAmount'].touched}"
+      class="subs-modal__input"
+      formControlName="paymentAmount"
+      name="password"
+      placeholder="Enter value"
+      type="number"
+    >
+  </div>
+  <button [disabled]="form.invalid" class="subs-modal__button">Subscribe</button>
+</form>

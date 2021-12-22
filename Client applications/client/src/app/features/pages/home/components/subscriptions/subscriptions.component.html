@@ -1,0 +1,31 @@
+<ng-template [ngIfElse]="notSubs" [ngIf]="subscriptions.length != 0">
+  <ng-container *ngFor="let subscription of subscriptions">
+    <div class="subscription">
+      <details>
+        <summary class="subscription__title">{{subscription.serviceName}}</summary>
+        <div class="subscription__box">
+          <div class="subscription__filed">
+            <h3>Start date: </h3>
+            <p>{{subscription.start | date : "dd.MM.yyyy hh:mm"}}</p>
+          </div>
+          <div class="subscription__filed">
+            <h3>End date: </h3>
+            <p>{{subscription.end | date : "dd.MM.yyyy hh:mm"}}</p>
+          </div>
+          <div class="subscription__filed">
+            <h3>Api key: </h3>
+            <p>{{subscription.apiKey}}</p>
+          </div>
+        </div>
+      </details>
+      <button (click)="unsubscribe(subscription.apiKey)" class="subscription__button">
+        Unsubscribe
+      </button>
+
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #notSubs>
+  <h3>There are no active subscriptions</h3>
+</ng-template>
