@@ -17,4 +17,13 @@ class UserDefaultsManager {
     func getToken() -> String {
         return defaults.string(forKey: "access.token") ?? ""
     }
+    
+    func saveAPIKey(key: String) {
+        defaults.set(key, forKey: "apiKey")
+    }
+    
+    func getAPIKey() -> String {
+        return defaults.string(forKey: "apiKey") ?? ""
+    }
+
 }

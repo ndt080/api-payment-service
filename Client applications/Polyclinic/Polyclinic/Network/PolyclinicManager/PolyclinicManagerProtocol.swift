@@ -9,5 +9,6 @@ import Foundation
 
 protocol PolyclinicManagerProtocol: AnyObject {
     func getAllApointments(completion: @escaping (Result<[Apointment], Error>) -> Void)
-    func makeApointment(data: Apointment, completion: @escaping (Result<String, Error>) -> Void)
+    func makeApointment(data: Apointment, completion: @escaping (Result<Apointment, Error>) -> Void)
+    func deleteApointment(data: Apointment, completion: @escaping (Result<String, Error>) -> Void)
 }

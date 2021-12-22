@@ -1,5 +1,5 @@
 //
-//  PolyclinicManager.swift
+//  RegistrationManager.swift
 //  Polyclinic
 //
 //  Created by Dzmitry Semenovich on 22.12.21.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-class PolyclinicManager {
-    let router = Router<PolyclinicAPI>(baseURL: URL(string: "https://api-polyclinic-service.herokuapp.com")!)
+class RegistrationManager {
+    let router = Router<RegistrationAPI>(baseURL: URL(string: "https://api-payment-service.herokuapp.com")!)
     
     
     public func handleNetworkResponse(_ response: HTTPURLResponse) -> NetworkError<Error> {
@@ -21,9 +21,8 @@ class PolyclinicManager {
     }
 }
 
-extension PolyclinicManager: PolyclinicManagerProtocol {
-    
-    private func routerRequest<T: Codable>(_ route: PolyclinicAPI,
+extension RegistrationManager {
+    private func routerRequest<T: Codable>(_ route: RegistrationAPI,
                                            decodeType: T.Type,
                                            completion: @escaping (Result<T, Error>) -> Void,
                                            progress: RouterProgressHandler? = nil) {
@@ -60,23 +59,9 @@ extension PolyclinicManager: PolyclinicManagerProtocol {
             }, progress: progress)
         }
     
-    func getAllApointments(completion: @escaping (Result<[Apointment], Error>) -> Void) {
-        routerRequest(.getAllApointments,
-                      decodeType: [Apointment].self,
-                      completion: completion,
-                      progress: nil)
-    }
-    
-    func makeApointment(data: Apointment, completion: @escaping (Result<Apointment, Error>) -> Void) {
-        routerRequest(.makeApointment(data: data),
-                      decodeType: Apointment.self,
-                      completion: completion,
-                      progress: nil)
-    }
-    
-    func deleteApointment(data: Apointment, completion: @escaping (Result<String, Error>) -> Void) {
-        routerRequest(.deleteApointment(data: data),
-                      decodeType: String.self,
+    func register(name: String, cost: Int, completion: @escaping (Result<ServiceModel, Error>) -> Void) {
+        routerRequest(.subscribe(name: name, cost: cost),
+                      decodeType: ServiceModel.self,
                       completion: completion,
                       progress: nil)
     }
