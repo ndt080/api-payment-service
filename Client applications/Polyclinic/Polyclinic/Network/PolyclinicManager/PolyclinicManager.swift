@@ -8,7 +8,7 @@
 import Foundation
 
 class PolyclinicManager {
-    let router = Router<PolyclinicAPI>(baseURL: URL(string: "https://localhost:44359")!)
+    let router = Router<PolyclinicAPI>(baseURL: URL(string: "https://api-polyclinic-service.herokuapp.com")!)
     
     
     public func handleNetworkResponse(_ response: HTTPURLResponse) -> NetworkError<Error> {
@@ -67,8 +67,15 @@ extension PolyclinicManager: PolyclinicManagerProtocol {
                       progress: nil)
     }
     
-    func makeApointment(data: Apointment, completion: @escaping (Result<String, Error>) -> Void) {
+    func makeApointment(data: Apointment, completion: @escaping (Result<Apointment, Error>) -> Void) {
         routerRequest(.makeApointment(data: data),
+                      decodeType: Apointment.self,
+                      completion: completion,
+                      progress: nil)
+    }
+    
+    func deleteApointment(data: Apointment, completion: @escaping (Result<String, Error>) -> Void) {
+        routerRequest(.deleteApointment(data: data),
                       decodeType: String.self,
                       completion: completion,
                       progress: nil)

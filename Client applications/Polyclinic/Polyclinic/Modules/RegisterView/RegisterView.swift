@@ -18,52 +18,50 @@ struct RegisterView: View {
     @State var isSubscribed: Bool = false
     
     var body: some View {
-        NavigationView {
+        HStack(alignment: .center) {
             VStack(alignment: .center) {
                 Text("Service Registration")
                     .font(.title)
                     .bold()
                     .italic()
                 
-                VStack(alignment: .center) {
-                    TextField(text: $serviceName, prompt: Text("Service")) {
-                        Text("Service")
-                    }.textFieldStyle(.roundedBorder)
-                    
-                    Stepper {
-                        Text("Payment amount: \(paymentAmount)")
-                    } onIncrement: {
-                        paymentAmount += 1
-                    } onDecrement: {
-                        if paymentAmount > 0 {
-                            paymentAmount -= 1
+                TextField(text: $serviceName, prompt: Text("Service")) {
+                    Text("Service")
+                }.textFieldStyle(.roundedBorder)
+                
+                Stepper {
+                    Text("Payment amount: \(paymentAmount)")
+                } onIncrement: {
+                    paymentAmount += 1
+                } onDecrement: {
+                    if paymentAmount > 0 {
+                        paymentAmount -= 1
+                    }
+                }
+                
+                Button {
+                    viewModel.register(name: serviceName, cost: paymentAmount) { result in
+                        switch result {
+                        case .success:
+                            self.isSubscribed.toggle()
+                        case .failure(let error):
+                            print(error)
                         }
                     }
-                    
-                    Button {
-                        viewModel.register(name: serviceName, cost: paymentAmount) { result in
-                            switch result {
-                            case .success:
-                                self.isSubscribed.toggle()
-                            case .failure(let error):
-                                print(error)
-                            }
-                        }
-                    } label: {
-                        Text("Submit")
-                    }.foregroundColor(.teal)
-                }
-                .padding()
-                .background(.gray.opacity(0.2))
-                .cornerRadius(23.0)
-                .padding()
-                
-                NavigationLink(isActive: $isSubscribed) {
-                    PolyclinicView()
                 } label: {
-                    EmptyView()
-                }
-
+                    Text("Submit")
+                }.foregroundColor(.teal)
+            }
+            .padding()
+            .background(.gray.opacity(0.2))
+            .cornerRadius(23.0)
+            .padding()
+            
+            NavigationLink(isActive: $isSubscribed) {
+                PolyclinicView()
+                    .navigationBarHidden(true)
+            } label: {
+                EmptyView()
             }
         }
     }

@@ -11,15 +11,18 @@ enum PolyclinicAPI {
     
     case getAllApointments
     case makeApointment(data: Apointment)
+    case deleteApointment(data: Apointment)
 }
 
 extension PolyclinicAPI: NetworkAPI {
     var path: String {
         switch self {
         case .getAllApointments:
-            return "/api/polyclinic/polyclinic"
+            return "/api/Polyclinic/GetAllVisits"
         case .makeApointment:
-            return "/api/polyclinic/polyclinic/AddVisit"
+            return "/api/Polyclinic/AddVisit"
+        case .deleteApointment:
+            return "/api/Polyclinic/DeleteVisit"
         }
     }
     
@@ -29,6 +32,8 @@ extension PolyclinicAPI: NetworkAPI {
             return .get
         case .makeApointment:
             return .post
+        case .deleteApointment:
+            return .delete
         }
     }
     
@@ -44,16 +49,24 @@ extension PolyclinicAPI: NetworkAPI {
                 print(error)
                 return nil
             }
+        case .deleteApointment(data: let data):
+            return nil
         }
     }
     
     var urlParameters: URLParameters? {
         switch self {
         case .getAllApointments:
-            let token = UserDefaultsManager().getToken()
+            let token = UserDefaultsManager().getAPIKey()
             return ["accessKey":token]
         case .makeApointment:
-            return nil
+            let token = UserDefaultsManager().getAPIKey()
+            return ["accessKey":token]
+        case .deleteApointment(data: let data):
+            let token = UserDefaultsManager().getAPIKey()
+            return ["patient" : data.patientFio,
+                    "speciality" : data.speciality,
+                    "accessKey": token]
         }
     }
     
@@ -65,12 +78,14 @@ extension PolyclinicAPI: NetworkAPI {
         case .makeApointment:
             return ["accept" : "*/*",
                     "Content-Type" : "application/json"]
+        case .deleteApointment:
+            return ["accept" : "*/*",
+                    "Content-Type" : "application/json"]
         }
     }
     
     var httpHeaders: HTTPHeader? {
-        return nil
+        let token = UserDefaultsManager().getToken()
+        return ["accessKey":token]
     }
-    
-    
 }
