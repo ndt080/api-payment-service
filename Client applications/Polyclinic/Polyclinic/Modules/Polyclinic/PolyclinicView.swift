@@ -15,6 +15,8 @@ struct PolyclinicView: View {
     
     @State var makeApointment: Bool = false
     
+    @State var searchTerm: String = ""
+    
     let defaults = UserDefaultsManager()
     
     var body: some View {
@@ -27,18 +29,17 @@ struct PolyclinicView: View {
                                 Text("Apointments list is empty!")
                             }
                         } else {
-                            List{
-                                ForEach(apointments) { item in
+                            VStack {
+                                SearchBar(text: $searchTerm)
+                                List(apointments.filter({ searchTerm.isEmpty ? true : $0.patientFio.contains(searchTerm) })) { item in
                                     Text("\(item.patientFio) - \(item.doctorFio)\n \(item.date)")
-                                }.onDelete(perform: deleteItems)
-                            }.listStyle(.grouped)
-                                
+                                }
+                            }
                         }
                     } else {
                         ProgressView()
                     }
                 }
-                
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -83,9 +84,9 @@ struct PolyclinicView: View {
 }
 
 struct ToastApointment<Presenting>: View where Presenting: View {
-
+    
     @ObservedObject var viewModel = PolyclinicViewModel()
-
+    
     @Binding var apointments: [Apointment]
     
     @State var specialist: String = ""
@@ -102,16 +103,16 @@ struct ToastApointment<Presenting>: View where Presenting: View {
     let presenting: () -> Presenting
     /// The text to show
     let text: Text
-
+    
     var body: some View {
-
+        
         GeometryReader { geometry in
-
+            
             ZStack(alignment: .center) {
-
+                
                 self.presenting()
                     .blur(radius: self.isShowing ? 1 : 0)
-
+                
                 VStack(alignment: .center, spacing: 0.0) {
                     self.text
                         .bold()
@@ -166,6 +167,47 @@ struct ToastApointment<Presenting>: View where Presenting: View {
                 .cornerRadius(20)
                 .transition(.slide)
                 .opacity(self.isShowing ? 1 : 0)
+            }
+        }.toolbar {
+            ToolbarItem {
+                Button {
+                    isShowing.toggle()
+                } label: {
+                    Text("Done")
+                }
+            }
+        }
+    }
+}
+
+struct SearchBar: View {
+    @Binding var text: String
+    
+    @State private var isEditing = false
+    
+    var body: some View {
+        HStack {
+            TextField("Search ...", text: $text)
+                .padding(7)
+                .padding(.horizontal, 25)
+                .background(Color(.systemGray6))
+                .cornerRadius(8)
+                .padding(.horizontal, 10)
+                .onTapGesture {
+                    self.isEditing = true
+                }
+            
+            if isEditing {
+                Button(action: {
+                    self.isEditing = false
+                    self.text = ""
+                    
+                }) {
+                    Text("Cancel")
+                }
+                .padding(.trailing, 10)
+                .transition(.move(edge: .trailing))
+                .animation(.default, value: 0.5)
             }
         }
     }
